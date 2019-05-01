@@ -1,0 +1,545 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\temp\SPWMcode\main.uvproj
+Project File Date:  05/01/2019
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+MAIN.C(202): warning C206: 'Init_PWM': missing function-prototype
+MAIN.C(202): error C267: 'Init_PWM': requires ANSI-style prototype
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(202): warning C206: 'Init_PWM': missing function-prototype
+MAIN.C(202): error C267: 'Init_PWM': requires ANSI-style prototype
+compiling STC_PWM.c...
+STC_PWM.C(4): error C129: missing ';' before 'stcPwmTime'
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+STC_PWM.H(7): error C141: syntax error near 'freq', expected ')'
+STC_PWM.H(8): error C141: syntax error near 'freq', expected ')'
+compiling STC_PWM.c...
+STC_PWM.C(4): error C129: missing ';' before 'stcPwmTime'
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(203): warning C206: 'Init_PWM': missing function-prototype
+MAIN.C(203): error C267: 'Init_PWM': requires ANSI-style prototype
+compiling STC_PWM.c...
+STC_PWM.C(4): error C129: missing ';' before 'stcPwmTime'
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling STC_PWM.c...
+STC_PWM.C(4): error C129: missing ';' before 'stcPwmTime'
+Target not created
+Build target 'Target 1'
+compiling STC_PWM.c...
+STC_PWM.C(43): error C202: 'PIN_SW2': undefined identifier
+STC_PWM.C(44): error C202: 'PWMCFG': undefined identifier
+STC_PWM.C(45): error C202: 'PWMCKS': undefined identifier
+STC_PWM.C(47): error C202: 'PWMC': undefined identifier
+STC_PWM.C(49): error C202: 'PWM3T1': undefined identifier
+STC_PWM.C(50): error C202: 'PWM3T2': undefined identifier
+STC_PWM.C(52): error C202: 'PWM3CR': undefined identifier
+STC_PWM.C(53): error C202: 'PWMCR': undefined identifier
+STC_PWM.C(54): error C202: 'PWMCFG': undefined identifier
+STC_PWM.C(55): error C202: 'P21': undefined identifier
+STC_PWM.C(60): error C202: 'PWM4T1': undefined identifier
+STC_PWM.C(61): error C202: 'PWM4T2': undefined identifier
+STC_PWM.C(63): error C202: 'PWM4CR': undefined identifier
+STC_PWM.C(64): error C202: 'PWMCR': undefined identifier
+STC_PWM.C(65): error C202: 'PWMCFG': undefined identifier
+STC_PWM.C(66): error C202: 'P22': undefined identifier
+STC_PWM.C(71): error C202: 'PWM6T1': undefined identifier
+STC_PWM.C(72): error C202: 'PWM6T2': undefined identifier
+STC_PWM.C(74): error C202: 'PWM6CR': undefined identifier
+STC_PWM.C(75): error C202: 'PWMCR': undefined identifier
+STC_PWM.C(76): error C202: 'PWMCFG': undefined identifier
+STC_PWM.C(77): error C202: 'P16': undefined identifier
+STC_PWM.C(82): error C202: 'PWM7T1': undefined identifier
+STC_PWM.C(83): error C202: 'PWM7T2': undefined identifier
+STC_PWM.C(85): error C202: 'PWM7CR': undefined identifier
+STC_PWM.C(86): error C202: 'PWMCR': undefined identifier
+STC_PWM.C(87): error C202: 'PWMCFG': undefined identifier
+STC_PWM.C(88): error C202: 'P17': undefined identifier
+STC_PWM.C(90): error C202: 'PWMCR': undefined identifier
+STC_PWM.C(91): error C202: 'PWMCR': undefined identifier
+STC_PWM.C(97): error C202: 'PIN_SW2': undefined identifier
+STC_PWM.C(99): error C202: 'EA': undefined identifier
+STC_PWM.C(112): error C202: 'uint': undefined identifier
+STC_PWM.C(112): error C141: syntax error near 'i'
+STC_PWM.C(113): error C141: syntax error near 'float'
+STC_PWM.C(113): error C202: 'x': undefined identifier
+STC_PWM.C(114): error C141: syntax error near 'float'
+STC_PWM.C(114): error C202: 'jiao': undefined identifier
+STC_PWM.C(115): error C141: syntax error near 'u8'
+STC_PWM.C(115): error C202: 'temp': undefined identifier
+STC_PWM.C(116): error C141: syntax error near 'u16'
+STC_PWM.C(116): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(117): error C202: 'jiao': undefined identifier
+STC_PWM.C(118): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(119): error C202: 'temp': undefined identifier
+STC_PWM.C(120): error C202: 'temp': undefined identifier
+STC_PWM.C(121): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(122): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(123): error C202: 'i': undefined identifier
+STC_PWM.C(125): error C202: 'y': undefined identifier
+STC_PWM.C(126): error C202: 'x': undefined identifier
+STC_PWM.C(127): error C202: 'i': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling STC_PWM.c...
+STC_PWM.C(44): error C202: 'PIN_SW2': undefined identifier
+STC_PWM.C(62): error C202: 'PWM_DeadZone': undefined identifier
+STC_PWM.C(84): error C202: 'PWM_DeadZone': undefined identifier
+STC_PWM.C(98): error C202: 'PIN_SW2': undefined identifier
+STC_PWM.C(113): error C202: 'uint': undefined identifier
+STC_PWM.C(113): error C141: syntax error near 'i'
+STC_PWM.C(114): error C141: syntax error near 'float'
+STC_PWM.C(114): error C202: 'x': undefined identifier
+STC_PWM.C(115): error C141: syntax error near 'float'
+STC_PWM.C(115): error C202: 'jiao': undefined identifier
+STC_PWM.C(116): error C141: syntax error near 'u8'
+STC_PWM.C(116): error C202: 'temp': undefined identifier
+STC_PWM.C(117): error C141: syntax error near 'u16'
+STC_PWM.C(117): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(118): error C202: 'jiao': undefined identifier
+STC_PWM.C(119): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(120): error C202: 'temp': undefined identifier
+STC_PWM.C(121): error C202: 'temp': undefined identifier
+STC_PWM.C(122): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(123): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(124): error C202: 'i': undefined identifier
+STC_PWM.C(126): error C202: 'y': undefined identifier
+STC_PWM.C(127): error C202: 'x': undefined identifier
+STC_PWM.C(128): error C202: 'i': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(150): warning C206: 'GetADCResult': missing function-prototype
+MAIN.C(150): error C267: 'GetADCResult': requires ANSI-style prototype
+compiling STC_PWM.c...
+STC_PWM.C(44): error C202: 'PIN_SW2': undefined identifier
+STC_PWM.C(62): error C202: 'PWM_DeadZone': undefined identifier
+STC_PWM.C(84): error C202: 'PWM_DeadZone': undefined identifier
+STC_PWM.C(98): error C202: 'PIN_SW2': undefined identifier
+STC_PWM.C(113): error C202: 'uint': undefined identifier
+STC_PWM.C(113): error C141: syntax error near 'i'
+STC_PWM.C(114): error C141: syntax error near 'float'
+STC_PWM.C(114): error C202: 'x': undefined identifier
+STC_PWM.C(115): error C141: syntax error near 'float'
+STC_PWM.C(115): error C202: 'jiao': undefined identifier
+STC_PWM.C(116): error C141: syntax error near 'u8'
+STC_PWM.C(116): error C202: 'temp': undefined identifier
+STC_PWM.C(117): error C141: syntax error near 'u16'
+STC_PWM.C(117): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(118): error C202: 'jiao': undefined identifier
+STC_PWM.C(119): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(120): error C202: 'temp': undefined identifier
+STC_PWM.C(121): error C202: 'temp': undefined identifier
+STC_PWM.C(122): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(123): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(124): error C202: 'i': undefined identifier
+STC_PWM.C(126): error C202: 'y': undefined identifier
+STC_PWM.C(127): error C202: 'x': undefined identifier
+STC_PWM.C(128): error C202: 'i': undefined identifier
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+MAIN.C(150): warning C206: 'GetADCResult': missing function-prototype
+MAIN.C(150): error C267: 'GetADCResult': requires ANSI-style prototype
+compiling STC_PWM.c...
+STC_PWM.C(44): error C202: 'PIN_SW2': undefined identifier
+STC_PWM.C(62): error C202: 'PWM_DeadZone': undefined identifier
+STC_PWM.C(84): error C202: 'PWM_DeadZone': undefined identifier
+STC_PWM.C(98): error C202: 'PIN_SW2': undefined identifier
+STC_PWM.C(113): error C202: 'uint': undefined identifier
+STC_PWM.C(113): error C141: syntax error near 'i'
+STC_PWM.C(114): error C141: syntax error near 'float'
+STC_PWM.C(114): error C202: 'x': undefined identifier
+STC_PWM.C(115): error C141: syntax error near 'float'
+STC_PWM.C(115): error C202: 'jiao': undefined identifier
+STC_PWM.C(116): error C141: syntax error near 'u8'
+STC_PWM.C(116): error C202: 'temp': undefined identifier
+STC_PWM.C(117): error C141: syntax error near 'u16'
+STC_PWM.C(117): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(118): error C202: 'jiao': undefined identifier
+STC_PWM.C(119): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(120): error C202: 'temp': undefined identifier
+STC_PWM.C(121): error C202: 'temp': undefined identifier
+STC_PWM.C(122): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(123): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(124): error C202: 'i': undefined identifier
+STC_PWM.C(126): error C202: 'y': undefined identifier
+STC_PWM.C(127): error C202: 'x': undefined identifier
+STC_PWM.C(128): error C202: 'i': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+compiling STC_PWM.c...
+STC_PWM.C(44): error C202: 'PIN_SW2': undefined identifier
+STC_PWM.C(62): error C202: 'PWM_DeadZone': undefined identifier
+STC_PWM.C(84): error C202: 'PWM_DeadZone': undefined identifier
+STC_PWM.C(98): error C202: 'PIN_SW2': undefined identifier
+STC_PWM.C(113): error C202: 'uint': undefined identifier
+STC_PWM.C(113): error C141: syntax error near 'i'
+STC_PWM.C(114): error C141: syntax error near 'float'
+STC_PWM.C(114): error C202: 'x': undefined identifier
+STC_PWM.C(115): error C141: syntax error near 'float'
+STC_PWM.C(115): error C202: 'jiao': undefined identifier
+STC_PWM.C(116): error C141: syntax error near 'u8'
+STC_PWM.C(116): error C202: 'temp': undefined identifier
+STC_PWM.C(117): error C141: syntax error near 'u16'
+STC_PWM.C(117): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(118): error C202: 'jiao': undefined identifier
+STC_PWM.C(119): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(120): error C202: 'temp': undefined identifier
+STC_PWM.C(121): error C202: 'temp': undefined identifier
+STC_PWM.C(122): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(123): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(124): error C202: 'i': undefined identifier
+STC_PWM.C(126): error C202: 'y': undefined identifier
+STC_PWM.C(127): error C202: 'x': undefined identifier
+STC_PWM.C(128): error C202: 'i': undefined identifier
+compiling AD.c...
+AD.C(53): error C202: 'ADC_CONTR': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(170): error C202: 'PIN_SW2': undefined identifier
+MAIN.C(175): error C202: 'PIN_SW2': undefined identifier
+compiling STC_PWM.c...
+STC_PWM.C(65): error C202: 'PWM_DeadZone': undefined identifier
+STC_PWM.C(87): error C202: 'PWM_DeadZone': undefined identifier
+STC_PWM.C(116): error C202: 'uint': undefined identifier
+STC_PWM.C(116): error C141: syntax error near 'i'
+STC_PWM.C(117): error C141: syntax error near 'float'
+STC_PWM.C(117): error C202: 'x': undefined identifier
+STC_PWM.C(118): error C141: syntax error near 'float'
+STC_PWM.C(118): error C202: 'jiao': undefined identifier
+STC_PWM.C(119): error C141: syntax error near 'u8'
+STC_PWM.C(119): error C202: 'temp': undefined identifier
+STC_PWM.C(120): error C141: syntax error near 'u16'
+STC_PWM.C(120): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(121): error C202: 'jiao': undefined identifier
+STC_PWM.C(122): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(123): error C202: 'temp': undefined identifier
+STC_PWM.C(124): error C202: 'temp': undefined identifier
+STC_PWM.C(125): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(126): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(127): error C202: 'i': undefined identifier
+STC_PWM.C(129): error C202: 'y': undefined identifier
+STC_PWM.C(130): error C202: 'x': undefined identifier
+STC_PWM.C(131): error C202: 'i': undefined identifier
+compiling AD.c...
+AD.C(53): error C202: 'ADC_CONTR': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(227): warning C206: 'Updata_Plv': missing function-prototype
+MAIN.C(227): error C267: 'Updata_Plv': requires ANSI-style prototype
+compiling STC_PWM.c...
+STC_PWM.C(65): error C202: 'PWM_DeadZone': undefined identifier
+STC_PWM.C(87): error C202: 'PWM_DeadZone': undefined identifier
+STC_PWM.C(116): error C202: 'uint': undefined identifier
+STC_PWM.C(116): error C141: syntax error near 'i'
+STC_PWM.C(117): error C141: syntax error near 'float'
+STC_PWM.C(117): error C202: 'x': undefined identifier
+STC_PWM.C(118): error C141: syntax error near 'float'
+STC_PWM.C(118): error C202: 'jiao': undefined identifier
+STC_PWM.C(119): error C141: syntax error near 'u8'
+STC_PWM.C(119): error C202: 'temp': undefined identifier
+STC_PWM.C(120): error C141: syntax error near 'u16'
+STC_PWM.C(120): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(121): error C202: 'jiao': undefined identifier
+STC_PWM.C(122): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(123): error C202: 'temp': undefined identifier
+STC_PWM.C(124): error C202: 'temp': undefined identifier
+STC_PWM.C(125): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(126): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(127): error C202: 'i': undefined identifier
+STC_PWM.C(129): error C202: 'y': undefined identifier
+STC_PWM.C(131): error C202: 'x': undefined identifier
+STC_PWM.C(133): error C202: 'i': undefined identifier
+compiling AD.c...
+AD.C(53): error C202: 'ADC_CONTR': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(227): warning C206: 'Updata_Plv': missing function-prototype
+MAIN.C(227): error C267: 'Updata_Plv': requires ANSI-style prototype
+compiling STC_PWM.c...
+STC_PWM.C(117): error C202: 'uint': undefined identifier
+STC_PWM.C(117): error C141: syntax error near 'i'
+STC_PWM.C(118): error C141: syntax error near 'float'
+STC_PWM.C(118): error C202: 'x': undefined identifier
+STC_PWM.C(119): error C141: syntax error near 'float'
+STC_PWM.C(119): error C202: 'jiao': undefined identifier
+STC_PWM.C(120): error C141: syntax error near 'u8'
+STC_PWM.C(120): error C202: 'temp': undefined identifier
+STC_PWM.C(121): error C141: syntax error near 'u16'
+STC_PWM.C(121): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(122): error C202: 'jiao': undefined identifier
+STC_PWM.C(123): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(124): error C202: 'temp': undefined identifier
+STC_PWM.C(125): error C202: 'temp': undefined identifier
+STC_PWM.C(126): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(127): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(128): error C202: 'i': undefined identifier
+STC_PWM.C(130): error C202: 'y': undefined identifier
+STC_PWM.C(132): error C202: 'x': undefined identifier
+STC_PWM.C(134): error C202: 'i': undefined identifier
+compiling AD.c...
+AD.C(53): error C202: 'ADC_CONTR': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+STC_PWM.H(12): error C141: syntax error near 'plv', expected ')'
+compiling STC_PWM.c...
+STC_PWM.H(12): error C141: syntax error near 'plv', expected ')'
+STC_PWM.C(117): error C202: 'uint': undefined identifier
+STC_PWM.C(117): error C141: syntax error near 'i'
+STC_PWM.C(118): error C141: syntax error near 'float'
+STC_PWM.C(118): error C202: 'x': undefined identifier
+STC_PWM.C(119): error C141: syntax error near 'float'
+STC_PWM.C(119): error C202: 'jiao': undefined identifier
+STC_PWM.C(120): error C141: syntax error near 'u8'
+STC_PWM.C(120): error C202: 'temp': undefined identifier
+STC_PWM.C(121): error C141: syntax error near 'u16'
+STC_PWM.C(121): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(122): error C202: 'jiao': undefined identifier
+STC_PWM.C(123): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(124): error C202: 'temp': undefined identifier
+STC_PWM.C(125): error C202: 'temp': undefined identifier
+STC_PWM.C(126): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(127): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(128): error C202: 'i': undefined identifier
+STC_PWM.C(130): error C202: 'y': undefined identifier
+STC_PWM.C(132): error C202: 'x': undefined identifier
+STC_PWM.C(134): error C202: 'i': undefined identifier
+compiling AD.c...
+AD.C(53): error C202: 'ADC_CONTR': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+compiling STC_PWM.c...
+STC_PWM.C(117): error C202: 'uint': undefined identifier
+STC_PWM.C(117): error C141: syntax error near 'i'
+STC_PWM.C(118): error C141: syntax error near 'float'
+STC_PWM.C(118): error C202: 'x': undefined identifier
+STC_PWM.C(119): error C141: syntax error near 'float'
+STC_PWM.C(119): error C202: 'jiao': undefined identifier
+STC_PWM.C(120): error C141: syntax error near 'u8'
+STC_PWM.C(120): error C202: 'temp': undefined identifier
+STC_PWM.C(121): error C141: syntax error near 'u16'
+STC_PWM.C(121): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(122): error C202: 'jiao': undefined identifier
+STC_PWM.C(123): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(124): error C202: 'temp': undefined identifier
+STC_PWM.C(125): error C202: 'temp': undefined identifier
+STC_PWM.C(126): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(127): error C202: 'cycleTemp': undefined identifier
+STC_PWM.C(128): error C202: 'i': undefined identifier
+STC_PWM.C(130): error C202: 'y': undefined identifier
+STC_PWM.C(132): error C202: 'x': undefined identifier
+STC_PWM.C(134): error C202: 'i': undefined identifier
+compiling AD.c...
+AD.C(53): error C202: 'ADC_CONTR': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling STC_PWM.c...
+STC_PWM.C(134): warning C206: 'sin': missing function-prototype
+STC_PWM.C(134): error C267: 'sin': requires ANSI-style prototype
+compiling AD.c...
+AD.C(53): error C202: 'ADC_CONTR': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+compiling STC_PWM.c...
+STC_PWM.C(143): warning C206: 'Filter': missing function-prototype
+STC_PWM.C(159): error C202: 'Vol': undefined identifier
+STC_PWM.C(161): error C202: 'Vol': undefined identifier
+STC_PWM.C(169): error C141: syntax error near ')'
+compiling AD.c...
+AD.C(53): error C202: 'ADC_CONTR': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(149): warning C206: 'Filter': missing function-prototype
+compiling STC_PWM.c...
+STC_PWM.C(51): warning C206: 'GetADCResult': missing function-prototype
+STC_PWM.C(51): error C267: 'GetADCResult': requires ANSI-style prototype
+STC_PWM.C(171): error C202: 'Vol': undefined identifier
+STC_PWM.C(173): error C202: 'Vol': undefined identifier
+STC_PWM.C(181): error C141: syntax error near ')'
+compiling AD.c...
+AD.C(53): error C202: 'ADC_CONTR': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(163): warning C206: 'Get_voltage': missing function-prototype
+compiling STC_PWM.c...
+STC_PWM.C(51): warning C206: 'GetADCResult': missing function-prototype
+STC_PWM.C(51): error C267: 'GetADCResult': requires ANSI-style prototype
+STC_PWM.C(171): error C202: 'Vol': undefined identifier
+STC_PWM.C(173): error C202: 'Vol': undefined identifier
+STC_PWM.C(181): error C141: syntax error near ')'
+compiling AD.c...
+AD.C(53): error C202: 'ADC_CONTR': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+compiling STC_PWM.c...
+STC_PWM.C(51): warning C206: 'GetADCResult': missing function-prototype
+STC_PWM.C(51): error C267: 'GetADCResult': requires ANSI-style prototype
+STC_PWM.C(171): error C202: 'Vol': undefined identifier
+STC_PWM.C(173): error C202: 'Vol': undefined identifier
+STC_PWM.C(181): error C141: syntax error near ')'
+compiling AD.c...
+AD.C(53): error C202: 'ADC_CONTR': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+AD.H(22): error C231: 'ADC_CONTR': redefinition
+compiling STC_PWM.c...
+STC_PWM.C(51): warning C206: 'GetADCResult': missing function-prototype
+STC_PWM.C(51): error C267: 'GetADCResult': requires ANSI-style prototype
+STC_PWM.C(171): error C202: 'Vol': undefined identifier
+STC_PWM.C(173): error C202: 'Vol': undefined identifier
+STC_PWM.C(181): error C141: syntax error near ')'
+compiling AD.c...
+AD.C(53): error C202: 'ADC_CONTR': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+compiling STC_PWM.c...
+STC_PWM.C(51): warning C206: 'GetADCResult': missing function-prototype
+STC_PWM.C(51): error C267: 'GetADCResult': requires ANSI-style prototype
+STC_PWM.C(171): error C202: 'Vol': undefined identifier
+STC_PWM.C(173): error C202: 'Vol': undefined identifier
+STC_PWM.C(181): error C141: syntax error near ')'
+compiling AD.c...
+AD.C(19): error C231: 'BYTE': redefinition
+AD.C(20): error C231: 'WORD': redefinition
+Target not created
+Build target 'Target 1'
+compiling STC_PWM.c...
+STC_PWM.C(51): warning C206: 'GetADCResult': missing function-prototype
+STC_PWM.C(51): error C267: 'GetADCResult': requires ANSI-style prototype
+STC_PWM.C(171): error C202: 'Vol': undefined identifier
+STC_PWM.C(173): error C202: 'Vol': undefined identifier
+STC_PWM.C(181): error C141: syntax error near ')'
+compiling AD.c...
+AD.C(55): warning C206: '_nop_': missing function-prototype
+AD.C(55): error C264: intrinsic '_nop_': declaration/activation error
+Target not created
+Build target 'Target 1'
+compiling STC_PWM.c...
+STC_PWM.C(51): warning C206: 'GetADCResult': missing function-prototype
+STC_PWM.C(51): error C267: 'GetADCResult': requires ANSI-style prototype
+STC_PWM.C(171): error C202: 'Vol': undefined identifier
+STC_PWM.C(173): error C202: 'Vol': undefined identifier
+STC_PWM.C(181): error C141: syntax error near ')'
+compiling AD.c...
+Target not created
+Build target 'Target 1'
+compiling main.c...
+compiling STC_PWM.c...
+STC_PWM.C(51): warning C206: 'GetADCResult': missing function-prototype
+STC_PWM.C(51): error C267: 'GetADCResult': requires ANSI-style prototype
+STC_PWM.C(171): error C202: 'Vol': undefined identifier
+STC_PWM.C(173): error C202: 'Vol': undefined identifier
+STC_PWM.C(181): error C141: syntax error near ')'
+compiling AD.c...
+AD.C(45): error C129: missing ';' before 'Vol'
+Target not created
+Build target 'Target 1'
+compiling STC_PWM.c...
+STC_PWM.C(51): warning C206: 'GetADCResult': missing function-prototype
+STC_PWM.C(51): error C267: 'GetADCResult': requires ANSI-style prototype
+STC_PWM.C(171): error C202: 'Vol': undefined identifier
+STC_PWM.C(173): error C202: 'Vol': undefined identifier
+STC_PWM.C(181): error C141: syntax error near ')'
+compiling AD.c...
+Target not created
+Build target 'Target 1'
+compiling main.c...
+compiling STC_PWM.c...
+STC_PWM.C(51): warning C206: 'GetADCResult': missing function-prototype
+STC_PWM.C(51): error C267: 'GetADCResult': requires ANSI-style prototype
+STC_PWM.C(171): error C202: 'Vol': undefined identifier
+STC_PWM.C(173): error C202: 'Vol': undefined identifier
+STC_PWM.C(181): error C141: syntax error near ')'
+Target not created
+Build target 'Target 1'
+compiling STC_PWM.c...
+STC_PWM.C(51): warning C206: 'GetADCResult': missing function-prototype
+STC_PWM.C(51): error C267: 'GetADCResult': requires ANSI-style prototype
+STC_PWM.C(181): error C141: syntax error near ')'
+Target not created
+Build target 'Target 1'
+compiling STC_PWM.c...
+STC_PWM.C(51): warning C206: 'GetADCResult': missing function-prototype
+STC_PWM.C(51): error C267: 'GetADCResult': requires ANSI-style prototype
+STC_PWM.C(181): error C141: syntax error near ')'
+Target not created
+Build target 'Target 1'
+compiling main.c...
+compiling STC_PWM.c...
+STC_PWM.C(51): warning C206: 'GetADCResult': missing function-prototype
+STC_PWM.C(51): error C267: 'GetADCResult': requires ANSI-style prototype
+STC_PWM.C(181): error C141: syntax error near ')'
+compiling AD.c...
+AD.H(37): error C129: missing ';' before 'GetADCResult'
+Target not created
+Build target 'Target 1'
+compiling main.c...
+compiling STC_PWM.c...
+STC_PWM.C(51): warning C206: 'GetADCResult': missing function-prototype
+STC_PWM.C(51): error C267: 'GetADCResult': requires ANSI-style prototype
+STC_PWM.C(181): error C141: syntax error near ')'
+compiling AD.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling STC_PWM.c...
+STC_PWM.C(51): warning C206: 'GetADCResult': missing function-prototype
+STC_PWM.C(51): error C267: 'GetADCResult': requires ANSI-style prototype
+STC_PWM.C(181): error C141: syntax error near ')'
+compiling AD.c...
+Target not created
+Build target 'Target 1'
+compiling STC_PWM.c...
+STC_PWM.C(51): warning C206: 'GetADCResult': missing function-prototype
+STC_PWM.C(51): error C267: 'GetADCResult': requires ANSI-style prototype
+STC_PWM.C(182): error C141: syntax error near ')'
+Target not created
+Build target 'Target 1'
+compiling STC_PWM.c...
+STC_PWM.C(183): error C141: syntax error near ')'
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling STC_PWM.c...
+STC_PWM.C(183): error C141: syntax error near ')'
+compiling AD.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+compiling STC_PWM.c...
+STC_PWM.C(183): error C141: syntax error near ')'
+compiling AD.c...
+Target not created

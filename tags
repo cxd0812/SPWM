@@ -1,0 +1,355 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AC	.\stc15w.h	/^sbit AC         =   PSW^6;$/;"	v
+ACC	.\stc15w.h	/^sfr ACC         =   0xE0;   \/\/0000,0000 累加器Accumulator$/;"	v
+ADC_CONTR	.\stc15w.h	/^sfr ADC_CONTR   =   0xBC;   \/\/0000,0000 A\/D转换控制寄存器$/;"	v
+ADC_FLAG	.\AD.c	28;"	d	file:
+ADC_FLAG	.\AD.h	23;"	d
+ADC_POWER	.\AD.c	27;"	d	file:
+ADC_POWER	.\AD.h	22;"	d
+ADC_RES	.\stc15w.h	/^sfr ADC_RES     =   0xBD;   \/\/0000,0000 A\/D转换结果高8位$/;"	v
+ADC_RESL	.\stc15w.h	/^sfr ADC_RESL    =   0xBE;   \/\/0000,0000 A\/D转换结果低2位$/;"	v
+ADC_SPEEDH	.\AD.c	32;"	d	file:
+ADC_SPEEDH	.\AD.h	27;"	d
+ADC_SPEEDHH	.\AD.c	33;"	d	file:
+ADC_SPEEDHH	.\AD.h	28;"	d
+ADC_SPEEDL	.\AD.c	31;"	d	file:
+ADC_SPEEDL	.\AD.h	26;"	d
+ADC_SPEEDLL	.\AD.c	30;"	d	file:
+ADC_SPEEDLL	.\AD.h	25;"	d
+ADC_START	.\AD.c	29;"	d	file:
+ADC_START	.\AD.h	24;"	d
+AUXR	.\stc15w.h	/^sfr AUXR        =   0x8E;   \/\/0000,0000 辅助寄存器$/;"	v
+AUXR1	.\stc15w.h	/^sfr AUXR1       =   0xA2;   \/\/0000,0000 辅助寄存器1$/;"	v
+B	.\stc15w.h	/^sfr B           =   0xF0;   \/\/0000,0000 B寄存器$/;"	v
+BUS_SPEED	.\stc15w.h	/^sfr BUS_SPEED   =   0xA1;   \/\/xx10,x011 总线速度控制寄存器$/;"	v
+C2IF	.\stc15w.h	261;"	d
+C3IF	.\stc15w.h	260;"	d
+C4IF	.\stc15w.h	259;"	d
+C5IF	.\stc15w.h	258;"	d
+C6IF	.\stc15w.h	257;"	d
+C7IF	.\stc15w.h	256;"	d
+CBIF	.\stc15w.h	255;"	d
+CCAP0H	.\stc15w.h	/^sfr CCAP0H      =   0xFA;   \/\/0000,0000 PCA模块0的捕捉\/比较寄存器高字节$/;"	v
+CCAP0L	.\stc15w.h	/^sfr CCAP0L      =   0xEA;   \/\/0000,0000 PCA模块0的捕捉\/比较寄存器低字节$/;"	v
+CCAP1H	.\stc15w.h	/^sfr CCAP1H      =   0xFB;   \/\/0000,0000 PCA模块1的捕捉\/比较寄存器高字节$/;"	v
+CCAP1L	.\stc15w.h	/^sfr CCAP1L      =   0xEB;   \/\/0000,0000 PCA模块1的捕捉\/比较寄存器低字节$/;"	v
+CCAP2H	.\stc15w.h	/^sfr CCAP2H      =   0xFC;   \/\/0000,0000 PCA模块2的捕捉\/比较寄存器高字节$/;"	v
+CCAP2L	.\stc15w.h	/^sfr CCAP2L      =   0xEC;   \/\/0000,0000 PCA模块2的捕捉\/比较寄存器低字节$/;"	v
+CCAPM0	.\stc15w.h	/^sfr CCAPM0      =   0xDA;   \/\/0000,0000 PCA模块0的PWM寄存器$/;"	v
+CCAPM1	.\stc15w.h	/^sfr CCAPM1      =   0xDB;   \/\/0000,0000 PCA模块1的PWM寄存器$/;"	v
+CCAPM2	.\stc15w.h	/^sfr CCAPM2      =   0xDC;   \/\/0000,0000 PCA模块2的PWM 寄存器$/;"	v
+CCF0	.\stc15w.h	/^sbit CCF0       =   CCON^0;$/;"	v
+CCF1	.\stc15w.h	/^sbit CCF1       =   CCON^1;$/;"	v
+CCF2	.\stc15w.h	/^sbit CCF2       =   CCON^2;$/;"	v
+CCON	.\stc15w.h	/^sfr CCON        =   0xD8;   \/\/00xx,xx00 PCA控制寄存器$/;"	v
+CCP_S0	.\main.c	12;"	d	file:
+CCP_S1	.\main.c	13;"	d	file:
+CF	.\stc15w.h	/^sbit CF         =   CCON^7;$/;"	v
+CH	.\stc15w.h	/^sfr CH          =   0xF9;   \/\/0000,0000 PCA计数器高字节$/;"	v
+CL	.\stc15w.h	/^sfr CL          =   0xE9;   \/\/0000,0000 PCA计数器低字节$/;"	v
+CLK_DIV	.\stc15w.h	/^sfr CLK_DIV     =   0x97;   \/\/0000,0000 时钟分频控制寄存器$/;"	v
+CMOD	.\stc15w.h	/^sfr CMOD        =   0xD9;   \/\/0xxx,x000 PCA 工作模式寄存器$/;"	v
+CMPCR1	.\stc15w.h	/^sfr CMPCR1      =   0xE6;   \/\/0000,0000 比较器控制寄存器1$/;"	v
+CMPCR2	.\stc15w.h	/^sfr CMPCR2      =   0xE7;   \/\/0000,0000 比较器控制寄存器2$/;"	v
+CR	.\stc15w.h	/^sbit CR         =   CCON^6;$/;"	v
+CY	.\stc15w.h	/^sbit CY         =   PSW^7;$/;"	v
+CurrentProtectTask	.\main.c	/^void CurrentProtectTask(void)$/;"	f
+DPH	.\stc15w.h	/^sfr DPH         =   0x83;   \/\/0000,0000 数据指针高字节$/;"	v
+DPL	.\stc15w.h	/^sfr DPL         =   0x82;   \/\/0000,0000 数据指针低字节$/;"	v
+Delay	.\AD.c	/^void Delay(u32 n)$/;"	f
+Drive_SD	.\STC_PWM.c	/^sbit Drive_SD=P0^4;   \/\/1: 关闭    0:使能$/;"	v
+Drive_SD	.\main.c	/^sbit Drive_SD=P0^4;   \/\/1: 关闭    0:使能$/;"	v
+EA	.\stc15w.h	/^sbit EA         =   IE^7;$/;"	v
+EADC	.\stc15w.h	/^sbit EADC       =   IE^5;$/;"	v
+ELVD	.\stc15w.h	/^sbit ELVD       =   IE^6;$/;"	v
+ES	.\stc15w.h	/^sbit ES         =   IE^4;$/;"	v
+ET0	.\stc15w.h	/^sbit ET0        =   IE^1;$/;"	v
+ET1	.\stc15w.h	/^sbit ET1        =   IE^3;$/;"	v
+EX0	.\stc15w.h	/^sbit EX0        =   IE^0;$/;"	v
+EX1	.\stc15w.h	/^sbit EX1        =   IE^2;$/;"	v
+F0	.\stc15w.h	/^sbit F0         =   PSW^5;$/;"	v
+FDIF	.\stc15w.h	252;"	d
+FILTER_N	.\STC_PWM.c	47;"	d	file:
+Filter	.\STC_PWM.c	/^int Filter() {$/;"	f
+GetADCResult	.\AD.c	/^u32 GetADCResult(u8 ch)$/;"	f
+GetSinTab	.\STC_PWM.c	/^void GetSinTab(u32 point,u32 maxnum,u32 freq,u16 v)$/;"	f
+Get_voltage	.\STC_PWM.c	/^u32 Get_voltage(void)$/;"	f
+Hz	.\main.c	/^u8 Hz=0x50;  \/\/输出频率 默认50hz$/;"	v
+IAP_ADDRH	.\stc15w.h	/^sfr IAP_ADDRH   =   0xC3;   \/\/0000,0000 EEPROM地址高字节$/;"	v
+IAP_ADDRL	.\stc15w.h	/^sfr IAP_ADDRL   =   0xC4;   \/\/0000,0000 EEPROM地址第字节$/;"	v
+IAP_CMD	.\stc15w.h	/^sfr IAP_CMD     =   0xC5;   \/\/xxxx,xx00 EEPROM命令寄存器$/;"	v
+IAP_CONTR	.\stc15w.h	/^sfr IAP_CONTR   =   0xC7;   \/\/0000,x000 EEPROM控制寄存器$/;"	v
+IAP_DATA	.\stc15w.h	/^sfr IAP_DATA    =   0xC2;   \/\/0000,0000 EEPROM数据寄存器$/;"	v
+IAP_TRIG	.\stc15w.h	/^sfr IAP_TRIG    =   0xC6;   \/\/0000,0000 EEPRPM命令触发寄存器$/;"	v
+IE	.\stc15w.h	/^sfr IE          =   0xA8;   \/\/0000,0000 中断控制寄存器$/;"	v
+IE0	.\stc15w.h	/^sbit IE0        =   TCON^1;$/;"	v
+IE1	.\stc15w.h	/^sbit IE1        =   TCON^3;$/;"	v
+IE2	.\stc15w.h	/^sfr IE2         =   0xAF;   \/\/0000,0000 中断控制寄存器2$/;"	v
+INT0	.\stc15w.h	/^sbit INT0 = 0xB2;   \/\/原头文件没有  新添加$/;"	v
+INT1	.\stc15w.h	/^sbit INT1 = 0xB3;   \/\/原头文件没有  新添加$/;"	v
+INT_CLKO	.\stc15w.h	/^sfr INT_CLKO    =   0x8F;   \/\/0000,0000 外部中断与时钟输出控制寄存器$/;"	v
+IO_init	.\main.c	/^void IO_init()$/;"	f
+IP	.\stc15w.h	/^sfr IP          =   0xB8;   \/\/0000,0000 中断优先级寄存器$/;"	v
+IP2	.\stc15w.h	/^sfr IP2         =   0xB5;   \/\/xxxx,xx00 中断优先级寄存器2$/;"	v
+IT0	.\stc15w.h	/^sbit IT0        =   TCON^0;$/;"	v
+IT1	.\stc15w.h	/^sbit IT1        =   TCON^2;$/;"	v
+InitADC	.\AD.c	/^void InitADC()$/;"	f
+OV	.\stc15w.h	/^sbit OV         =   PSW^2;$/;"	v
+P	.\stc15w.h	/^sbit P          =   PSW^0;$/;"	v
+P0	.\stc15w.h	/^sfr P0          =   0x80;   \/\/1111,1111 端口0$/;"	v
+P00	.\stc15w.h	/^sbit P00        =   P0^0;$/;"	v
+P01	.\stc15w.h	/^sbit P01        =   P0^1;$/;"	v
+P02	.\stc15w.h	/^sbit P02        =   P0^2;$/;"	v
+P03	.\stc15w.h	/^sbit P03        =   P0^3;$/;"	v
+P04	.\stc15w.h	/^sbit P04        =   P0^4;$/;"	v
+P05	.\stc15w.h	/^sbit P05        =   P0^5;$/;"	v
+P06	.\stc15w.h	/^sbit P06        =   P0^6;$/;"	v
+P07	.\stc15w.h	/^sbit P07        =   P0^7;$/;"	v
+P0M0	.\stc15w.h	/^sfr P0M0        =   0x94;   \/\/0000,0000 端口0模式寄存器0$/;"	v
+P0M1	.\stc15w.h	/^sfr P0M1        =   0x93;   \/\/0000,0000 端口0模式寄存器1$/;"	v
+P1	.\stc15w.h	/^sfr P1          =   0x90;   \/\/1111,1111 端口1$/;"	v
+P10	.\stc15w.h	/^sbit P10        =   P1^0;$/;"	v
+P11	.\stc15w.h	/^sbit P11        =   P1^1;$/;"	v
+P12	.\stc15w.h	/^sbit P12        =   P1^2;$/;"	v
+P13	.\stc15w.h	/^sbit P13        =   P1^3;$/;"	v
+P14	.\stc15w.h	/^sbit P14        =   P1^4;$/;"	v
+P15	.\stc15w.h	/^sbit P15        =   P1^5;$/;"	v
+P16	.\stc15w.h	/^sbit P16        =   P1^6;$/;"	v
+P17	.\stc15w.h	/^sbit P17        =   P1^7;$/;"	v
+P1ASF	.\stc15w.h	/^sfr P1ASF       =   0x9D;   \/\/0000,0000 端口1模拟功能配置寄存器$/;"	v
+P1M0	.\stc15w.h	/^sfr P1M0        =   0x92;   \/\/0000,0000 端口1模式寄存器0$/;"	v
+P1M1	.\stc15w.h	/^sfr P1M1        =   0x91;   \/\/0000,0000 端口1模式寄存器1$/;"	v
+P2	.\stc15w.h	/^sfr P2          =   0xA0;   \/\/1111,1111 端口2$/;"	v
+P20	.\stc15w.h	/^sbit P20        =   P2^0;$/;"	v
+P21	.\stc15w.h	/^sbit P21        =   P2^1;$/;"	v
+P22	.\stc15w.h	/^sbit P22        =   P2^2;$/;"	v
+P23	.\stc15w.h	/^sbit P23        =   P2^3;$/;"	v
+P24	.\stc15w.h	/^sbit P24        =   P2^4;$/;"	v
+P25	.\stc15w.h	/^sbit P25        =   P2^5;$/;"	v
+P26	.\stc15w.h	/^sbit P26        =   P2^6;$/;"	v
+P27	.\stc15w.h	/^sbit P27        =   P2^7;$/;"	v
+P2M0	.\stc15w.h	/^sfr P2M0        =   0x96;   \/\/0000,0000 端口2模式寄存器0$/;"	v
+P2M1	.\stc15w.h	/^sfr P2M1        =   0x95;   \/\/0000,0000 端口2模式寄存器1$/;"	v
+P3	.\stc15w.h	/^sfr P3          =   0xB0;   \/\/1111,1111 端口3$/;"	v
+P30	.\stc15w.h	/^sbit P30        =   P3^0;$/;"	v
+P31	.\stc15w.h	/^sbit P31        =   P3^1;$/;"	v
+P32	.\stc15w.h	/^sbit P32        =   P3^2;$/;"	v
+P33	.\stc15w.h	/^sbit P33        =   P3^3;$/;"	v
+P34	.\stc15w.h	/^sbit P34        =   P3^4;$/;"	v
+P35	.\stc15w.h	/^sbit P35        =   P3^5;$/;"	v
+P36	.\stc15w.h	/^sbit P36        =   P3^6;$/;"	v
+P37	.\stc15w.h	/^sbit P37        =   P3^7;$/;"	v
+P3M0	.\stc15w.h	/^sfr P3M0        =   0xB2;   \/\/0000,0000 端口3模式寄存器0$/;"	v
+P3M1	.\stc15w.h	/^sfr P3M1        =   0xB1;   \/\/0000,0000 端口3模式寄存器1$/;"	v
+P4	.\stc15w.h	/^sfr P4          =   0xC0;   \/\/1111,1111 端口4$/;"	v
+P40	.\stc15w.h	/^sbit P40        =   P4^0;$/;"	v
+P41	.\stc15w.h	/^sbit P41        =   P4^1;$/;"	v
+P42	.\stc15w.h	/^sbit P42        =   P4^2;$/;"	v
+P43	.\stc15w.h	/^sbit P43        =   P4^3;$/;"	v
+P44	.\stc15w.h	/^sbit P44        =   P4^4;$/;"	v
+P45	.\stc15w.h	/^sbit P45        =   P4^5;$/;"	v
+P46	.\stc15w.h	/^sbit P46        =   P4^6;$/;"	v
+P47	.\stc15w.h	/^sbit P47        =   P4^7;$/;"	v
+P4M0	.\stc15w.h	/^sfr P4M0        =   0xB4;   \/\/0000,0000 端口4模式寄存器0$/;"	v
+P4M1	.\stc15w.h	/^sfr P4M1        =   0xB3;   \/\/0000,0000 端口4模式寄存器1$/;"	v
+P5	.\stc15w.h	/^sfr P5          =   0xC8;   \/\/xxxx,1111 端口5$/;"	v
+P50	.\stc15w.h	/^sbit P50        =   P5^0;$/;"	v
+P51	.\stc15w.h	/^sbit P51        =   P5^1;$/;"	v
+P52	.\stc15w.h	/^sbit P52        =   P5^2;$/;"	v
+P53	.\stc15w.h	/^sbit P53        =   P5^3;$/;"	v
+P54	.\stc15w.h	/^sbit P54        =   P5^4;$/;"	v
+P55	.\stc15w.h	/^sbit P55        =   P5^5;$/;"	v
+P56	.\stc15w.h	/^sbit P56        =   P5^6;$/;"	v
+P57	.\stc15w.h	/^sbit P57        =   P5^7;$/;"	v
+P5M0	.\stc15w.h	/^sfr P5M0        =   0xCA;   \/\/0000,0000 端口5模式寄存器0$/;"	v
+P5M1	.\stc15w.h	/^sfr P5M1        =   0xC9;   \/\/0000,0000 端口5模式寄存器1$/;"	v
+P6	.\stc15w.h	/^sfr P6          =   0xE8;   \/\/0000,0000 端口6$/;"	v
+P60	.\stc15w.h	/^sbit P60        =   P6^0;$/;"	v
+P61	.\stc15w.h	/^sbit P61        =   P6^1;$/;"	v
+P62	.\stc15w.h	/^sbit P62        =   P6^2;$/;"	v
+P63	.\stc15w.h	/^sbit P63        =   P6^3;$/;"	v
+P64	.\stc15w.h	/^sbit P64        =   P6^4;$/;"	v
+P65	.\stc15w.h	/^sbit P65        =   P6^5;$/;"	v
+P66	.\stc15w.h	/^sbit P66        =   P6^6;$/;"	v
+P67	.\stc15w.h	/^sbit P67        =   P6^7;$/;"	v
+P6M0	.\stc15w.h	/^sfr P6M0        =   0xCC;   \/\/0000,0000 端口6模式寄存器0$/;"	v
+P6M1	.\stc15w.h	/^sfr P6M1        =   0xCB;   \/\/0000,0000 端口6模式寄存器1$/;"	v
+P7	.\stc15w.h	/^sfr P7          =   0xF8;   \/\/0000,0000 端口7$/;"	v
+P70	.\stc15w.h	/^sbit P70        =   P7^0;$/;"	v
+P71	.\stc15w.h	/^sbit P71        =   P7^1;$/;"	v
+P72	.\stc15w.h	/^sbit P72        =   P7^2;$/;"	v
+P73	.\stc15w.h	/^sbit P73        =   P7^3;$/;"	v
+P74	.\stc15w.h	/^sbit P74        =   P7^4;$/;"	v
+P75	.\stc15w.h	/^sbit P75        =   P7^5;$/;"	v
+P76	.\stc15w.h	/^sbit P76        =   P7^6;$/;"	v
+P77	.\stc15w.h	/^sbit P77        =   P7^7;$/;"	v
+P7M0	.\stc15w.h	/^sfr P7M0        =   0xE2;   \/\/0000,0000 端口7模式寄存器0$/;"	v
+P7M1	.\stc15w.h	/^sfr P7M1        =   0xE1;   \/\/0000,0000 端口7模式寄存器1$/;"	v
+PADC	.\stc15w.h	/^sbit PADC       =   IP^5;$/;"	v
+PCA_PWM0	.\stc15w.h	/^sfr PCA_PWM0    =   0xF2;   \/\/xxxx,xx00 PCA模块0的PWM寄存器$/;"	v
+PCA_PWM1	.\stc15w.h	/^sfr PCA_PWM1    =   0xF3;   \/\/xxxx,xx00 PCA模块1的PWM寄存器$/;"	v
+PCA_PWM2	.\stc15w.h	/^sfr PCA_PWM2    =   0xF4;   \/\/xxxx,xx00 PCA模块1的PWM寄存器$/;"	v
+PCON	.\stc15w.h	/^sfr PCON        =   0x87;   \/\/0001,0000 电源控制寄存器$/;"	v
+PIN_SW2	.\STC_PWM.c	/^sfr PIN_SW2 =   0xba;$/;"	v
+PLVD	.\stc15w.h	/^sbit PLVD       =   IP^6;$/;"	v
+PPCA	.\stc15w.h	/^sbit PPCA       =   IP^7;$/;"	v
+PROTECT_TIME	.\main.c	139;"	d	file:
+PS	.\stc15w.h	/^sbit PS         =   IP^4;$/;"	v
+PSW	.\stc15w.h	/^sfr PSW         =   0xD0;   \/\/0000,0000 程序状态字$/;"	v
+PT0	.\stc15w.h	/^sbit PT0        =   IP^1;$/;"	v
+PT1	.\stc15w.h	/^sbit PT1        =   IP^3;$/;"	v
+PWM2CR	.\stc15w.h	274;"	d
+PWM2T1	.\stc15w.h	268;"	d
+PWM2T1H	.\stc15w.h	269;"	d
+PWM2T1L	.\stc15w.h	270;"	d
+PWM2T2	.\stc15w.h	271;"	d
+PWM2T2H	.\stc15w.h	272;"	d
+PWM2T2L	.\stc15w.h	273;"	d
+PWM3CR	.\stc15w.h	281;"	d
+PWM3T1	.\stc15w.h	275;"	d
+PWM3T1H	.\stc15w.h	276;"	d
+PWM3T1L	.\stc15w.h	277;"	d
+PWM3T2	.\stc15w.h	278;"	d
+PWM3T2H	.\stc15w.h	279;"	d
+PWM3T2L	.\stc15w.h	280;"	d
+PWM4CR	.\stc15w.h	288;"	d
+PWM4T1	.\stc15w.h	282;"	d
+PWM4T1H	.\stc15w.h	283;"	d
+PWM4T1L	.\stc15w.h	284;"	d
+PWM4T2	.\stc15w.h	285;"	d
+PWM4T2H	.\stc15w.h	286;"	d
+PWM4T2L	.\stc15w.h	287;"	d
+PWM5CR	.\stc15w.h	295;"	d
+PWM5T1	.\stc15w.h	289;"	d
+PWM5T1H	.\stc15w.h	290;"	d
+PWM5T1L	.\stc15w.h	291;"	d
+PWM5T2	.\stc15w.h	292;"	d
+PWM5T2H	.\stc15w.h	293;"	d
+PWM5T2L	.\stc15w.h	294;"	d
+PWM6CR	.\stc15w.h	302;"	d
+PWM6T1	.\stc15w.h	296;"	d
+PWM6T1H	.\stc15w.h	297;"	d
+PWM6T1L	.\stc15w.h	298;"	d
+PWM6T2	.\stc15w.h	299;"	d
+PWM6T2H	.\stc15w.h	300;"	d
+PWM6T2L	.\stc15w.h	301;"	d
+PWM7CR	.\stc15w.h	309;"	d
+PWM7T1	.\stc15w.h	303;"	d
+PWM7T1H	.\stc15w.h	304;"	d
+PWM7T1L	.\stc15w.h	305;"	d
+PWM7T2	.\stc15w.h	306;"	d
+PWM7T2H	.\stc15w.h	307;"	d
+PWM7T2L	.\stc15w.h	308;"	d
+PWMC	.\stc15w.h	264;"	d
+PWMCFG	.\stc15w.h	/^sfr PWMCFG      =   0xf1;   \/\/x000,0000 PWM配置寄存器$/;"	v
+PWMCH	.\stc15w.h	265;"	d
+PWMCKS	.\stc15w.h	267;"	d
+PWMCL	.\stc15w.h	266;"	d
+PWMCR	.\stc15w.h	/^sfr PWMCR       =   0xf5;   \/\/0000,0000 PWM控制寄存器$/;"	v
+PWMFDCR	.\stc15w.h	/^sfr PWMFDCR     =   0xf7;   \/\/xx00,0000 PWM外部异常检测控制寄存器$/;"	v
+PWMIF	.\stc15w.h	/^sfr PWMIF       =   0xf6;   \/\/x000,0000 PWM中断标志寄存器$/;"	v
+PWM_DeadZone	.\STC_PWM.c	9;"	d	file:
+PWM_Index	.\main.c	/^u32  PWM_Index=0;   \/\/SPWM查表索引$/;"	v
+PX0	.\stc15w.h	/^sbit PX0        =   IP^0;$/;"	v
+PX1	.\stc15w.h	/^sbit PX1        =   IP^2;$/;"	v
+P_SW1	.\stc15w.h	/^sfr P_SW1       =   0xA2;   \/\/0000,0000 外设端口切换寄存器1$/;"	v
+P_SW2	.\stc15w.h	/^sfr P_SW2       =   0xBA;   \/\/0xxx,x000 外设端口切换寄存器$/;"	v
+RB8	.\stc15w.h	/^sbit RB8        =   SCON^2;$/;"	v
+REN	.\stc15w.h	/^sbit REN        =   SCON^4;$/;"	v
+RI	.\stc15w.h	/^sbit RI         =   SCON^0;$/;"	v
+RS0	.\stc15w.h	/^sbit RS0        =   PSW^3;$/;"	v
+RS1	.\stc15w.h	/^sbit RS1        =   PSW^4;$/;"	v
+Rec3Flag	.\main.c	/^bit Rec3Flag=0;  \/\/串口3接收完成  1完成$/;"	v
+Rec3_length	.\main.c	/^u8  Rec3_length=0; \/\/串口3接受数据长度$/;"	v
+S2BUF	.\stc15w.h	/^sfr S2BUF       =   0x9B;   \/\/xxxx,xxxx 串口2数据寄存器$/;"	v
+S2CON	.\stc15w.h	/^sfr S2CON       =   0x9A;   \/\/0000,0000 串口2控制寄存器$/;"	v
+S3BUF	.\stc15w.h	/^sfr S3BUF       =   0xAD;   \/\/xxxx,xxxx 串口3数据寄存器$/;"	v
+S3CON	.\stc15w.h	/^sfr S3CON       =   0xAC;   \/\/0000,0000 串口3控制寄存器$/;"	v
+S3RI	.\main.c	15;"	d	file:
+S3TI	.\main.c	16;"	d	file:
+S4BUF	.\stc15w.h	/^sfr S4BUF       =   0x85;   \/\/xxxx,xxxx 串口4数据寄存器$/;"	v
+S4CON	.\stc15w.h	/^sfr S4CON       =   0x84;   \/\/0000,0000 串口4控制寄存器$/;"	v
+SADDR	.\stc15w.h	/^sfr SADDR       =   0xA9;   \/\/0000,0000 从机地址寄存器$/;"	v
+SADEN	.\stc15w.h	/^sfr SADEN       =   0xB9;   \/\/0000,0000 从机地址屏蔽寄存器$/;"	v
+SBUF	.\stc15w.h	/^sfr SBUF        =   0x99;   \/\/xxxx,xxxx 串口1数据寄存器$/;"	v
+SCON	.\stc15w.h	/^sfr SCON        =   0x98;   \/\/0000,0000 串口1控制寄存器$/;"	v
+SM0	.\stc15w.h	/^sbit SM0        =   SCON^7;$/;"	v
+SM1	.\stc15w.h	/^sbit SM1        =   SCON^6;$/;"	v
+SM2	.\stc15w.h	/^sbit SM2        =   SCON^5;$/;"	v
+SP	.\stc15w.h	/^sfr SP          =   0x81;   \/\/0000,0111 堆栈指针$/;"	v
+SP485_ON	.\main.c	/^sbit SP485_ON=P3^4;   \/\/1: 发送    0:接收$/;"	v
+SPCTL	.\stc15w.h	/^sfr SPCTL       =   0xCE;   \/\/0000,0100 SPI控制寄存器$/;"	v
+SPDAT	.\stc15w.h	/^sfr SPDAT       =   0xCF;   \/\/0000,0000 SPI数据寄存器$/;"	v
+SPSTAT	.\stc15w.h	/^sfr SPSTAT      =   0xCD;   \/\/00xx,xxxx SPI状态寄存器$/;"	v
+STC_PWM_FREQ	.\STC_PWM.c	7;"	d	file:
+STC_PWM_H_	.\STC_PWM.h	2;"	d
+STC_PWM_Init	.\STC_PWM.c	/^void STC_PWM_Init(u32 freq)$/;"	f
+STC_PWM_SetVolage	.\STC_PWM.c	/^void STC_PWM_SetVolage(u16 freq,u16 vol)$/;"	f
+STC_PWM_Task	.\STC_PWM.c	/^void STC_PWM_Task(u16 *v_current,u16 v_target,u32 freq)$/;"	f
+STC_PWM_Timer	.\STC_PWM.c	/^void STC_PWM_Timer(void)$/;"	f
+STC_PWM_VUPTIME	.\STC_PWM.c	8;"	d	file:
+SendData	.\main.c	/^void SendData(u8 dat)$/;"	f
+SendString	.\main.c	/^void SendString(char *s)$/;"	f
+Send_threelines	.\WT588D.h	/^void Send_threelines(unsigned char addr,uchar dat) $/;"	f
+T2H	.\stc15w.h	/^sfr T2H         =   0xD6;   \/\/0000,0000 T2高字节$/;"	v
+T2L	.\stc15w.h	/^sfr T2L         =   0xD7;   \/\/0000,0000 T2低字节$/;"	v
+T3H	.\stc15w.h	/^sfr T3H         =   0xD4;   \/\/0000,0000 T3高字节$/;"	v
+T3L	.\stc15w.h	/^sfr T3L         =   0xD5;   \/\/0000,0000 T3低字节$/;"	v
+T3T4M	.\stc15w.h	/^sfr T3T4M       =   0xD1;   \/\/0000,0000 T3\/T4模式寄存器$/;"	v
+T4H	.\stc15w.h	/^sfr T4H         =   0xD2;   \/\/0000,0000 T4高字节$/;"	v
+T4L	.\stc15w.h	/^sfr T4L         =   0xD3;   \/\/0000,0000 T4低字节$/;"	v
+T4T3M	.\stc15w.h	/^sfr T4T3M       =   0xD1;   \/\/0000,0000 T3\/T4模式寄存器$/;"	v
+TB8	.\stc15w.h	/^sbit TB8        =   SCON^3;$/;"	v
+TCON	.\stc15w.h	/^sfr TCON        =   0x88;   \/\/0000,0000 T0\/T1控制寄存器$/;"	v
+TF0	.\stc15w.h	/^sbit TF0        =   TCON^5;$/;"	v
+TF1	.\stc15w.h	/^sbit TF1        =   TCON^7;$/;"	v
+TH0	.\stc15w.h	/^sfr TH0         =   0x8C;   \/\/0000,0000 T0高字节$/;"	v
+TH1	.\stc15w.h	/^sfr TH1         =   0x8D;   \/\/0000,0000 T1高字节$/;"	v
+TI	.\stc15w.h	/^sbit TI         =   SCON^1;$/;"	v
+TL0	.\stc15w.h	/^sfr TL0         =   0x8A;   \/\/0000,0000 T0低字节$/;"	v
+TL1	.\stc15w.h	/^sfr TL1         =   0x8B;   \/\/0000,0000 T1低字节$/;"	v
+TMOD	.\stc15w.h	/^sfr TMOD        =   0x89;   \/\/0000,0000 T0\/T1模式寄存器$/;"	v
+TR0	.\stc15w.h	/^sbit TR0        =   TCON^4;$/;"	v
+TR1	.\stc15w.h	/^sbit TR1        =   TCON^6;$/;"	v
+T_SinTable	.\STC_PWM.c	/^unsigned int   T_SinTable[ ]={$/;"	v
+T_SinTable	.\T_SineTable.h	/^unsigned int   T_SinTable[ ]={$/;"	v
+Timer0Count	.\main.c	/^u8 Timer0Count=0;  \/\/定时更新sin表用$/;"	v
+Timer0Init	.\main.c	/^void Timer0Init(void)		\/\/10毫秒@30.000MHz$/;"	f
+Uart1Init	.\main.c	/^void Uart1Init(void)		\/\/9600bps@30.000MHz$/;"	f
+Uart3Init	.\main.c	/^void Uart3Init(void)		\/\/9600bps@30.000MHz$/;"	f
+Uart3_Rec	.\main.c	/^u8 Uart3_Rec[20]={0};$/;"	v
+VBUSY	.\WT588D.h	/^sbit  VBUSY= P1^1;	$/;"	v
+VCS	.\WT588D.h	/^sbit  VCS  = P1^2;  $/;"	v
+VRST	.\WT588D.h	/^sbit  VRST = P4^7; $/;"	v
+VSCL	.\WT588D.h	/^sbit  VSCL = P1^5;$/;"	v
+VSDA	.\WT588D.h	/^sbit  VSDA = P1^3; $/;"	v
+Vol	.\main.c	/^u32  Vol=28;  \/\/输出电压  默认输出最大值$/;"	v
+Voltage	.\main.c	/^u32  Voltage=28;  \/\/采集到ad值$/;"	v
+WDT_CONTR	.\stc15w.h	/^sfr WDT_CONTR   =   0xC1;   \/\/0000,0000 看门狗控制寄存器$/;"	v
+WKTCH	.\stc15w.h	/^sfr WKTCH       =   0xAB;   \/\/0000,0000 掉电唤醒定时器高字节$/;"	v
+WKTCL	.\stc15w.h	/^sfr WKTCL       =   0xAA;   \/\/0000,0000 掉电唤醒定时器低字节$/;"	v
+__STC15F2K60S2_H_	.\stc15w.h	2;"	d
+__WT588D_H	.\WT588D.h	2;"	d
+__debug	.\main.c	41;"	d	file:
+delay_1ms	.\WT588D.h	/^void delay_1ms(uint q)$/;"	f
+delay_us	.\WT588D.h	/^void  delay_us (unsigned int us)$/;"	f
+delayms	.\main.c	/^void delayms(u32 xms)$/;"	f
+filter_buf	.\STC_PWM.c	/^int filter_buf[FILTER_N + 1];$/;"	v
+main	.\main.c	/^void main(void)					$/;"	f
+ptotectTimer	.\main.c	/^u32 ptotectTimer = 200;$/;"	v
+stcPwmTime	.\STC_PWM.c	/^static u32 stcPwmTime = 0;$/;"	v	file:
+stcPwm_Curv	.\STC_PWM.c	/^static u16 stcPwm_Curv = 0;$/;"	v	file:
+stcPwm_P	.\STC_PWM.c	/^static u16 stcPwm_P = 0;$/;"	v	file:
+stmPwm_Freq	.\STC_PWM.c	/^static u16 stmPwm_Freq = 0;$/;"	v	file:
+stmPwm_InVol	.\STC_PWM.c	/^static u32 stmPwm_InVol = 0;$/;"	v	file:
+stmPwm_Tarv	.\STC_PWM.c	/^static u16 stmPwm_Tarv = 0;$/;"	v	file:
+u16	.\STC_PWM.h	/^typedef unsigned short u16;$/;"	t
+u32	.\STC_PWM.h	/^typedef unsigned int u32;$/;"	t
+u8	.\STC_PWM.h	/^typedef unsigned char u8;$/;"	t
+uchar	.\WT588D.h	4;"	d
+uint	.\WT588D.h	5;"	d

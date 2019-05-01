@@ -1,0 +1,274 @@
+C51 COMPILER V9.54   STC_PWM                                                               05/01/2019 11:01:24 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE STC_PWM
+OBJECT MODULE PLACED IN .\Objects\STC_PWM.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE STC_PWM.c LARGE OMF2 OPTIMIZE(8,SPEED) BROWSE DEBUG PRINT(.\Listings\STC
+                    -_PWM.lst) TABS(2) OBJECT(.\Objects\STC_PWM.obj)
+
+line level    source
+
+   1          #include <stc15w.h>
+   2          #include "STC_PWM.h"
+   3          #include "AD.h"
+   4          #include <math.h>
+   5          
+   6          
+   7          #define STC_PWM_FREQ  150000
+   8          #define STC_PWM_VUPTIME 2
+   9          #define  PWM_DeadZone  5   /*����ʱ����,6~24֮��*/ 
+  10          
+  11          sfr PIN_SW2 =   0xba;
+  12          sbit Drive_SD=P0^4;   //1: �ر�    0:ʹ��
+  13          
+  14          static u16 stcPwmTime = 0;
+  15          static u16 stcPwm_Curv = 0;
+  16          static u16 stmPwm_Tarv = 0;
+  17          static u16 stmPwm_Freq = 0;
+  18          
+  19          u16   T_SinTable[ ]={
+  20          1200,  1238,  1275,  1313, 1350,  1388, 1425,  1462,  1498,  1535,  1571, 
+  21           1606, 1641, 1676,  1711,  1744,  1778,  1810,  1843,  1874,  1905,  1935, 
+  22           1964, 1993,  2021,  2048,  2074,  2100,  2124,  2148,  2170, 
+  23           2192, 2213,  2232,  2251,  2269,  2285,  2301,  2315,  2329, 
+  24           2341, 2352,  2362,  2371,  2379,  2385,  2390,  2395,  2398, 
+  25           2399, 2400,  2399,  2398,  2395,  2391,  2385,  2379,  2371, 
+  26           2363, 2353,  2342,  2330,  2316,  2302,  2287,  2270,  2252, 
+  27           2234, 2214,  2194,  2172,  2149,  2126,  2102,  2076,  2050, 
+  28           2023, 1995,  1967,  1937,  1907,  1876,  1845,  1813,  1780, 
+  29           1747, 1713,  1679,  1644,  1609,  1573,  1537,  1501,  1464, 
+  30           1428, 1390,  1353,  1316,  1278,  1241,  1203,  1165,  1128, 
+  31           1090, 1053,  1015,  978,  941,  905,  868,  832,  797, 
+  32           761, 726,  692,  658,  625,  592,  560,  528,  497, 
+  33           467, 438,  409,  381,  354,  328,  302,  278,  254, 
+  34           231, 210,  189,  169,  150,  133,  116,  100,  86, 
+  35           72, 60,  49,  39,  30,  22,  15,  10,  6, 
+  36           3, 1,  0,  0,  2,  5,  9,  14,  20, 
+  37           28, 37,  46,  57,  69,  83,  97,  112,  129, 
+  38           146, 165,  184,  205,  226,  249,  272,  297,  322, 
+  39           348, 375,  403,  431,  460,  490,  521,  553,  585, 
+  40           617, 650,  684,  718,  753,  788,  824,  860,  896, 
+  41           933, 970,  1007,  1044,  1081,  1119,  1157,  
+  42          };
+  43          
+  44          //�Ƚ��ȳ��˲��㷨 
+  45          #define FILTER_N 12
+  46          int filter_buf[FILTER_N + 1];
+  47          int Filter() {
+  48   1          int i;
+  49   1          int filter_sum = 0;
+  50   1          filter_buf[FILTER_N] = (int)(GetADCResult(0));
+  51   1          for(i = 0; i < FILTER_N; i++) {
+  52   2              filter_buf[i] = filter_buf[i + 1]; // �����������ƣ���λ�Ե�
+  53   2              filter_sum += filter_buf[i];
+  54   2          }
+C51 COMPILER V9.54   STC_PWM                                                               05/01/2019 11:01:24 PAGE 2   
+
+  55   1          return (int)(filter_sum / FILTER_N);
+  56   1      }
+  57          static u16 stmPwm_InVol = 0;
+  58          void STC_PWM_Init(u16 freq)
+  59          {
+  60   1        u8 i;
+  61   1        for(i=0;i<100;i++)
+  62   1        {
+  63   2          stmPwm_InVol = Get_voltage();
+  64   2        }
+  65   1        
+  66   1        
+  67   1        
+  68   1          PIN_SW2 |= 0x80;                //使能访问XSFR
+  69   1          PWMCFG = 0x00;                  //配置PWM的输出初始电平为低电平
+  70   1          
+  71   1        PWMCKS = 0x00;                  //选择PWM的时钟为Fosc/1
+  72   1      
+  73   1        PWMC = (STC_PWM_FREQ/freq) + STC_PWM_FREQ%freq;                   //设置PWM周期
+  74   1          /*PWM3 配置*/ 
+  75   1          PWM3T1 = 0;                //设置PWM3第1次反转的PWM计数
+  76   1          PWM3T2 = 100;                //设置PWM3第2次反转的PWM计数
+  77   1          //占空比为(PWM3T2-PWM3T1)/PWMC
+  78   1          PWM3CR = 0x00;                  //选择PWM3输出到P2.1,不使能PWM3中断
+  79   1          PWMCR |= 0x02;                   //使能PWM信号输出
+  80   1          PWMCFG &= ~0x02;                 //配置PWM的输出初始电平为低电平
+  81   1          P21=0;
+  82   1      
+  83   1      
+  84   1      
+  85   1          /*PWM4 配置*/ 
+  86   1          PWM4T1 = 0;                //设置PWM4第1次反转的PWM计数
+  87   1          PWM4T2 = 100+PWM_DeadZone;                //设置PWM4第2次反转的PWM计数
+  88   1          //占空比为(PWM4T2-PWM4T1)/PWMC
+  89   1          PWM4CR = 0x00;                  //选择PWM4输出到P2.2,不使能PWM4中断
+  90   1          PWMCR |= 0x04;                  //使能PWM信号输出 /*PWM4 配置*/
+  91   1          PWMCFG|= 0x04;                 //配置PWM的输出初始电平为高电平
+  92   1          P22=1;
+  93   1      
+  94   1      
+  95   1      
+  96   1          /*PWM6 配置*/     
+  97   1          PWM6T1 = 0;                //设置PWM6第1次反转的PWM计数
+  98   1          PWM6T2 = 100;                //设置PWM6第2次反转的PWM计数
+  99   1          //占空比为(PWM6T2-PWM6T1)/PWMC
+ 100   1          PWM6CR = 0x00;                  //选择PWM4输出到P1.6,不使能PWM4中断
+ 101   1          PWMCR |= 0x10;                  //使能PWM信号输出
+ 102   1          PWMCFG &=~0x10;                 //配置PWM的输出初始电平为低电平
+ 103   1          P16=0;        
+ 104   1      
+ 105   1      
+ 106   1      
+ 107   1          /*PWM7 配置*/     
+ 108   1          PWM7T1 = 0;                //设置PWM7第1次反转的PWM计数
+ 109   1          PWM7T2 = 100+PWM_DeadZone;                //设置PWM7第2次反转的PWM计数
+ 110   1          //占空比为(PWM7T2-PWM7T1)/PWMC
+ 111   1          PWM7CR = 0x00;                  //选择PWM7输出到P1.7,不使能PWM4中断
+ 112   1          PWMCR |= 0x20;                  //使能PWM信号输出 
+ 113   1          PWMCFG|= 0x20;                 //配置PWM的输出初始电平为高电平
+ 114   1          P17=1;
+ 115   1          /*通用*/
+ 116   1          PWMCR |= 0x40;                  //使能PWM归零中断
+C51 COMPILER V9.54   STC_PWM                                                               05/01/2019 11:01:24 PAGE 3   
+
+ 117   1          PWMCR |= 0x80;                  //使能PWM模块   
+ 118   1      
+ 119   1          //    PWMFDCR |=0x28;  //使能pwm外部异常检测
+ 120   1          //    PWMFDCR |=0x08;  //使能pwm外部异常检测中断
+ 121   1          //    PWMFDCR |=0x02;  //使能pwm外部异常检测  设置检测口为P24  高电平触发
+ 122   1      
+ 123   1          PIN_SW2 &= ~0x80;
+ 124   1      
+ 125   1          EA = 1;
+ 126   1      }
+ 127          
+ 128          
+ 129          
+ 130          //获取不同点数的正弦波数据
+ 131          //point: 一周期内的取样点数
+ 132          //maxnum: 一周期内对应DA输出最大值
+ 133          //freq 频率 
+ 134          //v 采集到的电压值
+ 135          
+ 136          void GetSinTab(u16 point,u16 maxnum,u16 freq,u16 v)
+ 137          {
+ 138   1          u16 i=0; 
+ 139   1          float x,y;   //弧度
+ 140   1          float jiao;//角度 分度角
+ 141   1        u8 temp = 0;
+ 142   1        u16 cycleTemp = 0;
+ 143   1          jiao=360.000/point; 
+ 144   1        cycleTemp= (STC_PWM_FREQ/freq)+(STC_PWM_FREQ%freq);
+ 145   1        temp=cycleTemp/v*1.414;
+ 146   1        maxnum=maxnum*temp+1;//1.414*107.14+1;
+ 147   1        if(maxnum>cycleTemp)
+ 148   1          maxnum=cycleTemp;
+ 149   1        for(i=0;i<point;i++)
+ 150   1        {
+ 151   2          y=jiao*i;    //得到角度值
+ 152   2          
+ 153   2          x=y*0.01744; //角度转弧度  弧度=角度*（π/180）
+ 154   2          
+ 155   2          T_SinTable[i]=1500+(maxnum/2-6)*sin(x)+0.5;//+0.5 对得到的的数据进行四舍五入
+ 156   2        
+ 157   2        }
+ 158   1      } 
+ 159          
+ 160          u16 Get_voltage(void)
+ 161          {
+ 162   1          u16  ad_temp=0;
+ 163   1          ad_temp=Filter();
+ 164   1          ad_temp=ad_temp*54;
+ 165   1          return (ad_temp/1000);
+ 166   1      }
+ 167          
+ 168          //void Updata_Plv(u8 plv)
+ 169          //{
+ 170          //    PIN_SW2 |= 0x80;                //ʹ�ܷ���XSFR
+ 171          //    if(plv==0x50)
+ 172          //        PWMC = 3000;                   //����PWM����
+ 173          //    else if(plv==0x60)
+ 174          //        PWMC = 2500;                   //����PWM����  
+ 175          //    PIN_SW2 &= ~0x80;
+ 176          //}
+ 177          void STC_PWM_Task(u16 *v_current,u16 v_target,u16 freq)
+ 178          {
+C51 COMPILER V9.54   STC_PWM                                                               05/01/2019 11:01:24 PAGE 4   
+
+ 179   1        if((*v_current)!=v_target)
+ 180   1        {
+ 181   2          if((*v_current)>v_target)
+ 182   2          {
+ 183   3            (*v_current)--;
+ 184   3          }
+ 185   2          else
+ 186   2          {
+ 187   3            (*v_current)++;
+ 188   3          }
+ 189   2          GetSinTab(200,*v_current,freq,stmPwm_InVol); //获取sin数据  
+ 190   2          Drive_SD=0; //使能IR2110芯片
+ 191   2        }
+ 192   1      }
+ 193          
+ 194          void STC_PWM_SetVolage(u16 freq,u16 vol)
+ 195          {
+ 196   1        PIN_SW2 |= 0x80;                //ʹ�ܷ���XSFR
+ 197   1        PWMC = (STC_PWM_FREQ/freq) + (STC_PWM_FREQ%freq);
+ 198   1        PIN_SW2 &= ~0x80;
+ 199   1        stmPwm_Tarv=vol;
+ 200   1        stmPwm_Freq = freq;
+ 201   1      }
+ 202          void STC_PWM_Timer(void)
+ 203          {
+ 204   1        if(0 == stcPwmTime)
+ 205   1        {
+ 206   2          stcPwmTime = STC_PWM_VUPTIME;
+ 207   2      
+ 208   2          STC_PWM_Task(&stcPwm_Curv,stmPwm_Tarv,stmPwm_Freq);
+ 209   2        }
+ 210   1        stcPwmTime--;
+ 211   1      }
+ 212          static u16 stcPwm_P = 0;
+ 213          void pwm_isr() interrupt 22 using 1
+ 214          {
+ 215   1          u16 j=0;
+ 216   1          if (PWMIF & CBIF)
+ 217   1          {
+ 218   2              PWMIF &= ~CBIF; //清除标志
+ 219   2              PIN_SW2 |= 0x80;  //使能访问XSFR
+ 220   2      
+ 221   2              j=T_SinTable[stcPwm_P];
+ 222   2              PWM3T2=j;
+ 223   2              PWM6T2=j;
+ 224   2              j+=PWM_DeadZone;
+ 225   2              PWM4T2=j;
+ 226   2              PWM7T2=j;
+ 227   2      
+ 228   2              PIN_SW2 &= ~0x80;
+ 229   2              if(++stcPwm_P>=200)
+ 230   2                  stcPwm_P=0;
+ 231   2          }
+ 232   1      }
+ 233          void pwmError_isr() interrupt 23 using 1  //短路保护
+ 234          {
+ 235   1      
+ 236   1          PWMFDCR &= ~FDIF; //清除标志
+ 237   1          // Drive_SD=1; //关闭IR2110芯片
+ 238   1      }
+
+
+C51 COMPILER V9.54   STC_PWM                                                               05/01/2019 11:01:24 PAGE 5   
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1183    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =    438      40
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
