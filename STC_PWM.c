@@ -21,7 +21,7 @@ static u16 stmPwm_Freq = 0;
 u8 Value_50=151;  //50hz?? 
 u8 Value_60=126;  //60hz?? 
 
-
+void SendData(u8 dat);
 
 
 u16   T_SinTable[ ]={
@@ -52,11 +52,13 @@ u16   T_SinTable[ ]={
 //�Ƚ��ȳ��˲��㷨 
 #define FILTER_N 12
 int filter_buf[FILTER_N + 1];
-int Filter() {
+int Filter() 
+{
     int i;
     int filter_sum = 0;
     filter_buf[FILTER_N] = (int)(GetADCResult(0));
-    for(i = 0; i < FILTER_N; i++) {
+    for(i = 0; i < FILTER_N; i++) 
+	{
         filter_buf[i] = filter_buf[i + 1]; // �����������ƣ���λ�Ե�
         filter_sum += filter_buf[i];
     }
@@ -66,21 +68,40 @@ static u16 stmPwm_InVol = 0;
 void STC_PWM_Init(u16 freq)
 {
 	u8 i;
+	u16 temp;
+	if(SPWM_FREQ_50HZ == freq)
+	{
+		temp = 3000;
+	}
+	else if(SPWM_FREQ_60HZ == freq)
+	{
+		temp = 2500;
+	}
+	else
+	{
+		return ;
+	}
+
+	
 	for(i=0;i<100;i++)
 	{
 		stmPwm_InVol = Get_voltage();
 	}
-	Value_50=3000/stmPwm_InVol*1.414;
-	Value_60=2500/stmPwm_InVol*1.414;
-
+	if(stmPwm_InVol < 40)
+	{
+		Value_50=3000/stmPwm_InVol*1.414;
+		Value_60=2500/stmPwm_InVol*1.414;
+	}
 	
+	
+
 	
 	PIN_SW2 |= 0x80;                //使能访问XSFR
 	PWMCFG = 0x00;                  //配置PWM的输出初始电平为低电平
 
 	PWMCKS = 0x00;                  //选择PWM的时钟为Fosc/1
-
-	PWMC = (STC_PWM_FREQ/freq) + (STC_PWM_FREQ%freq);                   //设置PWM周期
+	PWMC = temp;
+	
 	/*PWM3 配置*/	
 	PWM3T1 = 0;                //设置PWM3第1次反转的PWM计数
 	PWM3T2 = 100;                //设置PWM3第2次反转的PWM计数
@@ -146,7 +167,7 @@ void GetSinTab(u16 point,u16 maxnum,u16 freq)
 	
 	jiao=360.000/point; 
 	
-	if(freq==0x50)
+	if(freq==SPWM_FREQ_50HZ)
 	 {
 		maxnum=maxnum*Value_50+1;//1.414*107.14+1;
 		if(maxnum>3000)
@@ -157,9 +178,10 @@ void GetSinTab(u16 point,u16 maxnum,u16 freq)
 			x=y*0.01744; //?????  ??=??*(p/180)
 
 			T_SinTable[i]=1500+(maxnum/2-6)*sin(x)+0.5;//+0.5 ?????????????
+			SendData(T_SinTable[i]);
 		}
 	}
-	else if(freq==0x60)
+	else if(freq==SPWM_FREQ_60HZ)
 	{
 		maxnum=maxnum*Value_60+1;//89.28*1.414+1;
 		if(maxnum>2500)
@@ -202,20 +224,34 @@ void STC_PWM_Task(u16 *v_current,u16 v_target,u16 freq)
 		{
 			(*v_current)++;
 		}
-		GetSinTab(200,*v_current,freq); //获取sin数据	
-		Drive_SD=0; //使能IR2110芯片
+		GetSinTab(200,*v_current,freq);
+		Drive_SD=0;
 	}
 }
 
 void STC_PWM_SetVolage(u16 freq,u16 vol)
 {
+	u16 temp;
+	if(SPWM_FREQ_50HZ == freq)
+	{
+		temp = 3000;
+	}
+	else if(SPWM_FREQ_60HZ == freq)
+	{
+		temp = 2500;
+	}
+	else
+	{
+		return ;
+	}
 	PIN_SW2 |= 0x80;                //ʹ�ܷ���XSFR
-	PWMC = (STC_PWM_FREQ/freq) + (STC_PWM_FREQ%freq);
+	
+	PWMC = temp;
 	PIN_SW2 &= ~0x80;
 	stmPwm_Tarv=vol;
 	stmPwm_Freq = freq;
 }
-void SendData(u8 dat);
+
 void STC_PWM_Timer(void)
 {
 	if(0 == stcPwmTime)
@@ -241,7 +277,7 @@ void pwm_isr() interrupt 22 using 1
         PIN_SW2 |= 0x80;  //使能访问XSFR
 		
         j=T_SinTable[stcPwm_P];
-		SendData(j);
+//		SendData(j);
         PWM3T2=j;
         PWM6T2=j;
         j+=PWM_DeadZone;

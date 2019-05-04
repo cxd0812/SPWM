@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   STC_PWM                                                               05/04/2019 17:53:24 PAGE 1   
+C51 COMPILER V9.00   STC_PWM                                                               05/04/2019 20:59:20 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE STC_PWM
@@ -31,7 +31,7 @@ line level    source
   21          u8 Value_50=151;  //50hz?? 
   22          u8 Value_60=126;  //60hz?? 
   23          
-  24          
+  24          void SendData(u8 dat);
   25          
   26          
   27          u16   T_SinTable[ ]={
@@ -62,229 +62,267 @@ line level    source
   52          //�Ƚ��ȳ��˲��㷨 
   53          #define FILTER_N 12
   54          int filter_buf[FILTER_N + 1];
-C51 COMPILER V9.00   STC_PWM                                                               05/04/2019 17:53:24 PAGE 2   
+C51 COMPILER V9.00   STC_PWM                                                               05/04/2019 20:59:20 PAGE 2   
 
-  55          int Filter() {
-  56   1          int i;
-  57   1          int filter_sum = 0;
-  58   1          filter_buf[FILTER_N] = (int)(GetADCResult(0));
-  59   1          for(i = 0; i < FILTER_N; i++) {
-  60   2              filter_buf[i] = filter_buf[i + 1]; // �����������ƣ���λ�Ե�
-  61   2              filter_sum += filter_buf[i];
-  62   2          }
-  63   1          return (int)(filter_sum / FILTER_N);
-  64   1      }
-  65          static u16 stmPwm_InVol = 0;
-  66          void STC_PWM_Init(u16 freq)
-  67          {
-  68   1              u8 i;
-  69   1              for(i=0;i<100;i++)
-  70   1              {
-  71   2                      stmPwm_InVol = Get_voltage();
-  72   2              }
-  73   1              Value_50=3000/stmPwm_InVol*1.414;
-  74   1              Value_60=2500/stmPwm_InVol*1.414;
-  75   1      
-  76   1              
-  77   1              
-  78   1              PIN_SW2 |= 0x80;                //使能访问XSFR
-  79   1              PWMCFG = 0x00;                  //配置PWM的输出初始电平为低电平
-  80   1      
-  81   1              PWMCKS = 0x00;                  //选择PWM的时钟为Fosc/1
-  82   1      
-  83   1              PWMC = (STC_PWM_FREQ/freq) + (STC_PWM_FREQ%freq);                   //设置PWM周期
-  84   1              /*PWM3 配置*/ 
-  85   1              PWM3T1 = 0;                //设置PWM3第1次反转的PWM计数
-  86   1              PWM3T2 = 100;                //设置PWM3第2次反转的PWM计数
-  87   1              PWM3CR = 0x00;                  //选择PWM3输出到P2.1,不使能PWM3中断
-  88   1              PWMCR |= 0x02;                   //使能PWM信号输出
-  89   1              PWMCFG &= ~0x02;                 //配置PWM的输出初始电平为低电平
-  90   1              P21=0;
-  91   1      
-  92   1      
-  93   1      
-  94   1          PWM4T1 = 0;                //设置PWM4第1次反转的PWM计数
-  95   1          PWM4T2 = 100+PWM_DeadZone;                //设置PWM4第2次反转的PWM计数
-  96   1          PWM4CR = 0x00;                  //选择PWM4输出到P2.2,不使能PWM4中断
-  97   1          PWMCR |= 0x04;                  //使能PWM信号输出     /*PWM4 配置*/
-  98   1          PWMCFG|= 0x04;                 //配置PWM的输出初始电平为高电平
-  99   1          P22=1;
- 100   1      
+  55          int Filter() 
+  56          {
+  57   1          int i;
+  58   1          int filter_sum = 0;
+  59   1          filter_buf[FILTER_N] = (int)(GetADCResult(0));
+  60   1          for(i = 0; i < FILTER_N; i++) 
+  61   1              {
+  62   2              filter_buf[i] = filter_buf[i + 1]; // �����������ƣ���λ�Ե�
+  63   2              filter_sum += filter_buf[i];
+  64   2          }
+  65   1          return (int)(filter_sum / FILTER_N);
+  66   1      }
+  67          static u16 stmPwm_InVol = 0;
+  68          void STC_PWM_Init(u16 freq)
+  69          {
+  70   1              u8 i;
+  71   1              u16 temp;
+  72   1              if(SPWM_FREQ_50HZ == freq)
+  73   1              {
+  74   2                      temp = 3000;
+  75   2              }
+  76   1              else if(SPWM_FREQ_60HZ == freq)
+  77   1              {
+  78   2                      temp = 2500;
+  79   2              }
+  80   1              else
+  81   1              {
+  82   2                      return ;
+  83   2              }
+  84   1      
+  85   1              
+  86   1              for(i=0;i<100;i++)
+  87   1              {
+  88   2                      stmPwm_InVol = Get_voltage();
+  89   2              }
+  90   1              if(stmPwm_InVol < 40)
+  91   1              {
+  92   2                      Value_50=3000/stmPwm_InVol*1.414;
+  93   2                      Value_60=2500/stmPwm_InVol*1.414;
+  94   2              }
+  95   1              
+  96   1              
+  97   1      
+  98   1              
+  99   1              PIN_SW2 |= 0x80;                //使能访问XSFR
+ 100   1              PWMCFG = 0x00;                  //配置PWM的输出初始电平为低电平
  101   1      
- 102   1      
- 103   1          PWM6T1 = 0;
- 104   1          PWM6T2 = 100;
- 105   1      
- 106   1          PWM6CR = 0x00;
- 107   1          PWMCR |= 0x10;
- 108   1          PWMCFG &=~0x10;
- 109   1          P16=0;                              
- 110   1      
- 111   1      
+ 102   1              PWMCKS = 0x00;                  //选择PWM的时钟为Fosc/1
+ 103   1              PWMC = temp;
+ 104   1              
+ 105   1              /*PWM3 配置*/ 
+ 106   1              PWM3T1 = 0;                //设置PWM3第1次反转的PWM计数
+ 107   1              PWM3T2 = 100;                //设置PWM3第2次反转的PWM计数
+ 108   1              PWM3CR = 0x00;                  //选择PWM3输出到P2.1,不使能PWM3中断
+ 109   1              PWMCR |= 0x02;                   //使能PWM信号输出
+ 110   1              PWMCFG &= ~0x02;                 //配置PWM的输出初始电平为低电平
+ 111   1              P21=0;
  112   1      
- 113   1          PWM7T1 = 0;
- 114   1          PWM7T2 = 100+PWM_DeadZone;
- 115   1      
- 116   1          PWM7CR = 0x00;
-C51 COMPILER V9.00   STC_PWM                                                               05/04/2019 17:53:24 PAGE 3   
+ 113   1      
+ 114   1      
+ 115   1          PWM4T1 = 0;                //设置PWM4第1次反转的PWM计数
+ 116   1          PWM4T2 = 100+PWM_DeadZone;                //设置PWM4第2次反转的PWM计数
+C51 COMPILER V9.00   STC_PWM                                                               05/04/2019 20:59:20 PAGE 3   
 
- 117   1          PWMCR |= 0x20;
- 118   1          PWMCFG|= 0x20;
- 119   1          P17=1;
- 120   1      
- 121   1          PWMCR |= 0x40;
- 122   1          PWMCR |= 0x80;
+ 117   1          PWM4CR = 0x00;                  //选择PWM4输出到P2.2,不使能PWM4中断
+ 118   1          PWMCR |= 0x04;                  //使能PWM信号输出     /*PWM4 配置*/
+ 119   1          PWMCFG|= 0x04;                 //配置PWM的输出初始电平为高电平
+ 120   1          P22=1;
+ 121   1      
+ 122   1      
  123   1      
- 124   1          //          PWMFDCR |=0x28;  //使能pwm外部异常检测
- 125   1          //          PWMFDCR |=0x08;  //使能pwm外部异常检测中断
- 126   1          //          PWMFDCR |=0x02;  //使能pwm外部异常检测  设置检测口为P24  高电平触发
- 127   1      
- 128   1          PIN_SW2 &= ~0x80;
- 129   1      
- 130   1          EA = 1;
- 131   1      }
- 132          
- 133          
- 134          
- 135          //获取不同点数的正弦波数据
- 136          //point: 一周期内的取样点数
- 137          //maxnum: 一周期内对应DA输出最大值
- 138          //freq 频率 
- 139          //v 采集到的电压值
- 140          
- 141          void GetSinTab(u16 point,u16 maxnum,u16 freq)
- 142          {
- 143   1              u16 i=0; 
- 144   1              float x,y;   //??
- 145   1              float jiao;//?? ???
- 146   1              
- 147   1              jiao=360.000/point; 
- 148   1              
- 149   1              if(freq==0x50)
- 150   1               {
- 151   2                      maxnum=maxnum*Value_50+1;//1.414*107.14+1;
- 152   2                      if(maxnum>3000)
- 153   2                              maxnum=3000;
- 154   2                      for(i=0;i<point;i++)
- 155   2                      {
- 156   3                              y=jiao*i;    //?????
- 157   3                              x=y*0.01744; //?????  ??=??*(p/180)
- 158   3      
- 159   3                              T_SinTable[i]=1500+(maxnum/2-6)*sin(x)+0.5;//+0.5 ?????????????
- 160   3                      }
- 161   2              }
- 162   1              else if(freq==0x60)
- 163   1              {
- 164   2                      maxnum=maxnum*Value_60+1;//89.28*1.414+1;
- 165   2                      if(maxnum>2500)
- 166   2                              maxnum=2500;
- 167   2                      for(i=0;i<point;i++)
- 168   2                      {
- 169   3                              y=jiao*i;    //?????
- 170   3                              x=y*0.01744; //?????  ??=??*(p/180)
- 171   3                              T_SinTable[i]=1250+(maxnum/2-6)*sin(x)+0.5;//+0.5 ?????????????
- 172   3                      }               
- 173   2              }
- 174   1      }       
- 175          
- 176          u16 Get_voltage(void)
- 177          {
- 178   1          u16  ad_temp=0;
-C51 COMPILER V9.00   STC_PWM                                                               05/04/2019 17:53:24 PAGE 4   
+ 124   1          PWM6T1 = 0;
+ 125   1          PWM6T2 = 100;
+ 126   1      
+ 127   1          PWM6CR = 0x00;
+ 128   1          PWMCR |= 0x10;
+ 129   1          PWMCFG &=~0x10;
+ 130   1          P16=0;                              
+ 131   1      
+ 132   1      
+ 133   1      
+ 134   1          PWM7T1 = 0;
+ 135   1          PWM7T2 = 100+PWM_DeadZone;
+ 136   1      
+ 137   1          PWM7CR = 0x00;
+ 138   1          PWMCR |= 0x20;
+ 139   1          PWMCFG|= 0x20;
+ 140   1          P17=1;
+ 141   1      
+ 142   1          PWMCR |= 0x40;
+ 143   1          PWMCR |= 0x80;
+ 144   1      
+ 145   1          //          PWMFDCR |=0x28;  //使能pwm外部异常检测
+ 146   1          //          PWMFDCR |=0x08;  //使能pwm外部异常检测中断
+ 147   1          //          PWMFDCR |=0x02;  //使能pwm外部异常检测  设置检测口为P24  高电平触发
+ 148   1      
+ 149   1          PIN_SW2 &= ~0x80;
+ 150   1      
+ 151   1          EA = 1;
+ 152   1      }
+ 153          
+ 154          
+ 155          
+ 156          //获取不同点数的正弦波数据
+ 157          //point: 一周期内的取样点数
+ 158          //maxnum: 一周期内对应DA输出最大值
+ 159          //freq 频率 
+ 160          //v 采集到的电压值
+ 161          
+ 162          void GetSinTab(u16 point,u16 maxnum,u16 freq)
+ 163          {
+ 164   1              u16 i=0; 
+ 165   1              float x,y;   //??
+ 166   1              float jiao;//?? ???
+ 167   1              
+ 168   1              jiao=360.000/point; 
+ 169   1              
+ 170   1              if(freq==SPWM_FREQ_50HZ)
+ 171   1               {
+ 172   2                      maxnum=maxnum*Value_50+1;//1.414*107.14+1;
+ 173   2                      if(maxnum>3000)
+ 174   2                              maxnum=3000;
+ 175   2                      for(i=0;i<point;i++)
+ 176   2                      {
+ 177   3                              y=jiao*i;    //?????
+ 178   3                              x=y*0.01744; //?????  ??=??*(p/180)
+C51 COMPILER V9.00   STC_PWM                                                               05/04/2019 20:59:20 PAGE 4   
 
- 179   1          ad_temp=Filter();
- 180   1          ad_temp=ad_temp*54;
- 181   1          return (ad_temp/1000);
- 182   1      }
- 183          
- 184          //void Updata_Plv(u8 plv)
- 185          //{
- 186          //    PIN_SW2 |= 0x80;                //ʹ�ܷ���XSFR
- 187          //    if(plv==0x50)
- 188          //        PWMC = 3000;                   //����PWM����
- 189          //    else if(plv==0x60)
- 190          //        PWMC = 2500;                   //����PWM����  
- 191          //    PIN_SW2 &= ~0x80;
- 192          //}
- 193          void STC_PWM_Task(u16 *v_current,u16 v_target,u16 freq)
- 194          {
- 195   1              if((*v_current)!=v_target)
- 196   1              {
- 197   2                      if((*v_current)>v_target)
- 198   2                      {
- 199   3                              (*v_current)--;
- 200   3                      }
- 201   2                      else
- 202   2                      {
- 203   3                              (*v_current)++;
- 204   3                      }
- 205   2                      GetSinTab(200,*v_current,freq); //获取sin数据       
- 206   2                      Drive_SD=0; //使能IR2110芯片
- 207   2              }
- 208   1      }
- 209          
- 210          void STC_PWM_SetVolage(u16 freq,u16 vol)
- 211          {
- 212   1              PIN_SW2 |= 0x80;                //ʹ�ܷ���XSFR
- 213   1              PWMC = (STC_PWM_FREQ/freq) + (STC_PWM_FREQ%freq);
- 214   1              PIN_SW2 &= ~0x80;
- 215   1              stmPwm_Tarv=vol;
- 216   1              stmPwm_Freq = freq;
- 217   1      }
- 218          void SendData(u8 dat);
- 219          void STC_PWM_Timer(void)
- 220          {
- 221   1              if(0 == stcPwmTime)
- 222   1              {
- 223   2                      stcPwmTime = STC_PWM_VUPTIME;
- 224   2                      /*SendData(0x55);
- 225   2                      SendData(stcPwm_Curv);
- 226   2                      SendData(stcPwm_Curv>>8);
- 227   2                      SendData(stcPwm_Curv>>16);
- 228   2                      SendData(stcPwm_Curv>>24);*/
- 229   2                      STC_PWM_Task(&stcPwm_Curv,stmPwm_Tarv,stmPwm_Freq);
- 230   2              }
- 231   1              stcPwmTime--;
- 232   1      }
- 233          static u16 stcPwm_P = 0;
- 234          void pwm_isr() interrupt 22 using 1
- 235          {
- 236   1          u16 j=0;
- 237   1          if (PWMIF & CBIF)
- 238   1          {
- 239   2                      
- 240   2              PWMIF &= ~CBIF; //清除标志
-C51 COMPILER V9.00   STC_PWM                                                               05/04/2019 17:53:24 PAGE 5   
+ 179   3      
+ 180   3                              T_SinTable[i]=1500+(maxnum/2-6)*sin(x)+0.5;//+0.5 ?????????????
+ 181   3                              SendData(T_SinTable[i]);
+ 182   3                      }
+ 183   2              }
+ 184   1              else if(freq==SPWM_FREQ_60HZ)
+ 185   1              {
+ 186   2                      maxnum=maxnum*Value_60+1;//89.28*1.414+1;
+ 187   2                      if(maxnum>2500)
+ 188   2                              maxnum=2500;
+ 189   2                      for(i=0;i<point;i++)
+ 190   2                      {
+ 191   3                              y=jiao*i;    //?????
+ 192   3                              x=y*0.01744; //?????  ??=??*(p/180)
+ 193   3                              T_SinTable[i]=1250+(maxnum/2-6)*sin(x)+0.5;//+0.5 ?????????????
+ 194   3                      }               
+ 195   2              }
+ 196   1      }       
+ 197          
+ 198          u16 Get_voltage(void)
+ 199          {
+ 200   1          u16  ad_temp=0;
+ 201   1          ad_temp=Filter();
+ 202   1          ad_temp=ad_temp*54;
+ 203   1          return (ad_temp/1000);
+ 204   1      }
+ 205          
+ 206          //void Updata_Plv(u8 plv)
+ 207          //{
+ 208          //    PIN_SW2 |= 0x80;                //ʹ�ܷ���XSFR
+ 209          //    if(plv==0x50)
+ 210          //        PWMC = 3000;                   //����PWM����
+ 211          //    else if(plv==0x60)
+ 212          //        PWMC = 2500;                   //����PWM����  
+ 213          //    PIN_SW2 &= ~0x80;
+ 214          //}
+ 215          void STC_PWM_Task(u16 *v_current,u16 v_target,u16 freq)
+ 216          {
+ 217   1              if((*v_current)!=v_target)
+ 218   1              {
+ 219   2                      if((*v_current)>v_target)
+ 220   2                      {
+ 221   3                              (*v_current)--;
+ 222   3                      }
+ 223   2                      else
+ 224   2                      {
+ 225   3                              (*v_current)++;
+ 226   3                      }
+ 227   2                      GetSinTab(200,*v_current,freq);
+ 228   2                      Drive_SD=0;
+ 229   2              }
+ 230   1      }
+ 231          
+ 232          void STC_PWM_SetVolage(u16 freq,u16 vol)
+ 233          {
+ 234   1              u16 temp;
+ 235   1              if(SPWM_FREQ_50HZ == freq)
+ 236   1              {
+ 237   2                      temp = 3000;
+ 238   2              }
+ 239   1              else if(SPWM_FREQ_60HZ == freq)
+ 240   1              {
+C51 COMPILER V9.00   STC_PWM                                                               05/04/2019 20:59:20 PAGE 5   
 
- 241   2              PIN_SW2 |= 0x80;  //使能访问XSFR
- 242   2                      
- 243   2              j=T_SinTable[stcPwm_P];
- 244   2                      SendData(j);
- 245   2              PWM3T2=j;
- 246   2              PWM6T2=j;
- 247   2              j+=PWM_DeadZone;
- 248   2              PWM4T2=j;
- 249   2              PWM7T2=j;
- 250   2      
- 251   2              PIN_SW2 &= ~0x80;
- 252   2              if(stcPwm_P++>200)
- 253   2                      {
- 254   3                  stcPwm_P=0;
- 255   3                      }
- 256   2          }
- 257   1      }
- 258          void pwmError_isr() interrupt 23 using 1  //短路保护
- 259          {
- 260   1      
- 261   1          PWMFDCR &= ~FDIF; //清除标志
- 262   1          // Drive_SD=1; //关闭IR2110芯片
- 263   1      }
+ 241   2                      temp = 2500;
+ 242   2              }
+ 243   1              else
+ 244   1              {
+ 245   2                      return ;
+ 246   2              }
+ 247   1              PIN_SW2 |= 0x80;                //ʹ�ܷ���XSFR
+ 248   1              
+ 249   1              PWMC = temp;
+ 250   1              PIN_SW2 &= ~0x80;
+ 251   1              stmPwm_Tarv=vol;
+ 252   1              stmPwm_Freq = freq;
+ 253   1      }
+ 254          
+ 255          void STC_PWM_Timer(void)
+ 256          {
+ 257   1              if(0 == stcPwmTime)
+ 258   1              {
+ 259   2                      stcPwmTime = STC_PWM_VUPTIME;
+ 260   2                      /*SendData(0x55);
+ 261   2                      SendData(stcPwm_Curv);
+ 262   2                      SendData(stcPwm_Curv>>8);
+ 263   2                      SendData(stcPwm_Curv>>16);
+ 264   2                      SendData(stcPwm_Curv>>24);*/
+ 265   2                      STC_PWM_Task(&stcPwm_Curv,stmPwm_Tarv,stmPwm_Freq);
+ 266   2              }
+ 267   1              stcPwmTime--;
+ 268   1      }
+ 269          static u16 stcPwm_P = 0;
+ 270          void pwm_isr() interrupt 22 using 1
+ 271          {
+ 272   1          u16 j=0;
+ 273   1          if (PWMIF & CBIF)
+ 274   1          {
+ 275   2                      
+ 276   2              PWMIF &= ~CBIF; //清除标志
+ 277   2              PIN_SW2 |= 0x80;  //使能访问XSFR
+ 278   2                      
+ 279   2              j=T_SinTable[stcPwm_P];
+ 280   2      //              SendData(j);
+ 281   2              PWM3T2=j;
+ 282   2              PWM6T2=j;
+ 283   2              j+=PWM_DeadZone;
+ 284   2              PWM4T2=j;
+ 285   2              PWM7T2=j;
+ 286   2      
+ 287   2              PIN_SW2 &= ~0x80;
+ 288   2              if(stcPwm_P++>200)
+ 289   2                      {
+ 290   3                  stcPwm_P=0;
+ 291   3                      }
+ 292   2          }
+ 293   1      }
+ 294          void pwmError_isr() interrupt 23 using 1  //短路保护
+ 295          {
+ 296   1      
+ 297   1          PWMFDCR &= ~FDIF; //清除标志
+ 298   1          // Drive_SD=1; //关闭IR2110芯片
+ 299   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   1471    ----
+C51 COMPILER V9.00   STC_PWM                                                               05/04/2019 20:59:20 PAGE 6   
+
+   CODE SIZE        =   1387    ----
    CONSTANT SIZE    =   ----    ----
-   XDATA SIZE       =    440      38
+   XDATA SIZE       =    440      34
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----

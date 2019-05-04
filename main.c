@@ -117,7 +117,7 @@ void CurrentProtectTask(void)
 	if(!ptotectTimer)
 	{
 		ptotectTimer = PROTECT_TIME;
-    if( GetADCResult(1)>710)
+		if( GetADCResult(1)>710)
 		{
             Drive_SD=1; //关闭IR2110芯片
 		}
@@ -173,17 +173,17 @@ void main(void)
     InitADC();        //Init ADC  
     SP485_ON=0;//使能485接收
     Drive_SD=1; //关闭IR2110芯片
-    STC_PWM_Init(50);
-		STC_PWM_SetVolage(50,20);
+    STC_PWM_Init(SPWM_FREQ_50HZ);
+	STC_PWM_SetVolage(SPWM_FREQ_50HZ,20);
     while(1)						
     { 
-			UartCmdProcess();
+		//UartCmdProcess();
     }		
 }
 //  d Timer0using using using using using using using 
 void Timer0() interrupt 1 using 1  //10ms
 {
-  P35=~P35;
+	P35=~P35;
 	//SendString("d");
 	CurrentProtectTask();
 	STC_PWM_Timer();

@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   MAIN                                                                  05/04/2019 17:46:21 PAGE 1   
+C51 COMPILER V9.00   MAIN                                                                  05/04/2019 20:59:20 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   52   1          TR1 = 1;            //启动定时器1
   53   1      }
   54          
-C51 COMPILER V9.00   MAIN                                                                  05/04/2019 17:46:21 PAGE 2   
+C51 COMPILER V9.00   MAIN                                                                  05/04/2019 20:59:20 PAGE 2   
 
   55          void Uart3Init(void)            //9600bps@30.000MHz
   56          {
@@ -126,12 +126,12 @@ line level    source
  114          u16 ptotectTimer = 200;
  115          void CurrentProtectTask(void)
  116          {
-C51 COMPILER V9.00   MAIN                                                                  05/04/2019 17:46:21 PAGE 3   
+C51 COMPILER V9.00   MAIN                                                                  05/04/2019 20:59:20 PAGE 3   
 
  117   1              if(!ptotectTimer)
  118   1              {
  119   2                      ptotectTimer = PROTECT_TIME;
- 120   2          if( GetADCResult(1)>710)
+ 120   2                      if( GetADCResult(1)>710)
  121   2                      {
  122   3                  Drive_SD=1; //关闭IR2110芯片
  123   3                      }
@@ -187,19 +187,19 @@ line level    source
  173   1          InitADC();        //Init ADC  
  174   1          SP485_ON=0;//使能485接收
  175   1          Drive_SD=1; //关闭IR2110芯片
- 176   1          STC_PWM_Init(50);
- 177   1                      STC_PWM_SetVolage(50,20);
+ 176   1          STC_PWM_Init(SPWM_FREQ_50HZ);
+ 177   1              STC_PWM_SetVolage(SPWM_FREQ_50HZ,20);
  178   1          while(1)                                            
-C51 COMPILER V9.00   MAIN                                                                  05/04/2019 17:46:21 PAGE 4   
+C51 COMPILER V9.00   MAIN                                                                  05/04/2019 20:59:20 PAGE 4   
 
  179   1          { 
- 180   2                              UartCmdProcess();
+ 180   2                      //UartCmdProcess();
  181   2          }           
  182   1      }
  183          //  d Timer0using using using using using using using 
  184          void Timer0() interrupt 1 using 1  //10ms
  185          {
- 186   1        P35=~P35;
+ 186   1              P35=~P35;
  187   1              //SendString("d");
  188   1              CurrentProtectTask();
  189   1              STC_PWM_Timer();
@@ -226,7 +226,7 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    648    ----
+   CODE SIZE        =    645    ----
    CONSTANT SIZE    =     22    ----
    XDATA SIZE       =     36      93
    PDATA SIZE       =   ----    ----

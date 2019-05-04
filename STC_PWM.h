@@ -7,6 +7,9 @@ typedef unsigned int u16;
 typedef unsigned long u32;
 
 
+#define SPWM_FREQ_50HZ		0x50
+#define SPWM_FREQ_60HZ		0x60
+
 void STC_PWM_Init(u16 freq);
 void STC_PWM_SetVolage(u16 freq,u16 vol);
 void Updata_Plv(u8 plv);
