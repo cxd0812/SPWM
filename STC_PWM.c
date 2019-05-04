@@ -8,6 +8,8 @@
 #define STC_PWM_VUPTIME	2
 #define  PWM_DeadZone  5   /*����ʱ����,6~24֮��*/ 
 
+
+
 sfr PIN_SW2 =   0xba;
 sbit Drive_SD=P0^4;   //1: �ر�    0:ʹ��
 
@@ -15,6 +17,12 @@ static u16 stcPwmTime = 0;
 static u16 stcPwm_Curv = 0;
 static u16 stmPwm_Tarv = 0;
 static u16 stmPwm_Freq = 0;
+
+u8 Value_50=151;  //50hz?? 
+u8 Value_60=126;  //60hz?? 
+
+
+
 
 u16   T_SinTable[ ]={
 1200,  1238,  1275,  1313, 1350,  1388, 1425,  1462,  1498,  1535,  1571, 
@@ -62,30 +70,29 @@ void STC_PWM_Init(u16 freq)
 	{
 		stmPwm_InVol = Get_voltage();
 	}
+	Value_50=3000/stmPwm_InVol*1.414;
+	Value_60=2500/stmPwm_InVol*1.414;
+
 	
 	
-	
-    PIN_SW2 |= 0x80;                //使能访问XSFR
-    PWMCFG = 0x00;                  //配置PWM的输出初始电平为低电平
-    
+	PIN_SW2 |= 0x80;                //使能访问XSFR
+	PWMCFG = 0x00;                  //配置PWM的输出初始电平为低电平
+
 	PWMCKS = 0x00;                  //选择PWM的时钟为Fosc/1
 
-	PWMC = (STC_PWM_FREQ/freq) + STC_PWM_FREQ%freq;                   //设置PWM周期
-    /*PWM3 配置*/	
-    PWM3T1 = 0;                //设置PWM3第1次反转的PWM计数
-    PWM3T2 = 100;                //设置PWM3第2次反转的PWM计数
-    //占空比为(PWM3T2-PWM3T1)/PWMC
-    PWM3CR = 0x00;                  //选择PWM3输出到P2.1,不使能PWM3中断
-    PWMCR |= 0x02;                   //使能PWM信号输出
-    PWMCFG &= ~0x02;                 //配置PWM的输出初始电平为低电平
-    P21=0;
+	PWMC = (STC_PWM_FREQ/freq) + (STC_PWM_FREQ%freq);                   //设置PWM周期
+	/*PWM3 配置*/	
+	PWM3T1 = 0;                //设置PWM3第1次反转的PWM计数
+	PWM3T2 = 100;                //设置PWM3第2次反转的PWM计数
+	PWM3CR = 0x00;                  //选择PWM3输出到P2.1,不使能PWM3中断
+	PWMCR |= 0x02;                   //使能PWM信号输出
+	PWMCFG &= ~0x02;                 //配置PWM的输出初始电平为低电平
+	P21=0;
 
 
 
-    /*PWM4 配置*/	
     PWM4T1 = 0;                //设置PWM4第1次反转的PWM计数
     PWM4T2 = 100+PWM_DeadZone;                //设置PWM4第2次反转的PWM计数
-    //占空比为(PWM4T2-PWM4T1)/PWMC
     PWM4CR = 0x00;                  //选择PWM4输出到P2.2,不使能PWM4中断
     PWMCR |= 0x04;                  //使能PWM信号输出	/*PWM4 配置*/
     PWMCFG|= 0x04;                 //配置PWM的输出初始电平为高电平
@@ -93,28 +100,26 @@ void STC_PWM_Init(u16 freq)
 
 
 
-    /*PWM6 配置*/			
-    PWM6T1 = 0;                //设置PWM6第1次反转的PWM计数
-    PWM6T2 = 100;                //设置PWM6第2次反转的PWM计数
-    //占空比为(PWM6T2-PWM6T1)/PWMC
-    PWM6CR = 0x00;                  //选择PWM4输出到P1.6,不使能PWM4中断
-    PWMCR |= 0x10;                  //使能PWM信号输出
-    PWMCFG &=~0x10;                 //配置PWM的输出初始电平为低电平
+    PWM6T1 = 0;
+    PWM6T2 = 100;
+
+    PWM6CR = 0x00;
+    PWMCR |= 0x10;
+    PWMCFG &=~0x10;
     P16=0;				
 
 
 
-    /*PWM7 配置*/			
-    PWM7T1 = 0;                //设置PWM7第1次反转的PWM计数
-    PWM7T2 = 100+PWM_DeadZone;                //设置PWM7第2次反转的PWM计数
-    //占空比为(PWM7T2-PWM7T1)/PWMC
-    PWM7CR = 0x00;                  //选择PWM7输出到P1.7,不使能PWM4中断
-    PWMCR |= 0x20;                  //使能PWM信号输出	
-    PWMCFG|= 0x20;                 //配置PWM的输出初始电平为高电平
+    PWM7T1 = 0;
+    PWM7T2 = 100+PWM_DeadZone;
+
+    PWM7CR = 0x00;
+    PWMCR |= 0x20;
+    PWMCFG|= 0x20;
     P17=1;
-    /*通用*/
-    PWMCR |= 0x40;                  //使能PWM归零中断
-    PWMCR |= 0x80;                  //使能PWM模块		
+
+    PWMCR |= 0x40;
+    PWMCR |= 0x80;
 
     //		PWMFDCR |=0x28;  //使能pwm外部异常检测
     //		PWMFDCR |=0x08;  //使能pwm外部异常检测中断
@@ -133,28 +138,39 @@ void STC_PWM_Init(u16 freq)
 //freq 频率 
 //v 采集到的电压值
 
-void GetSinTab(u16 point,u16 maxnum,u16 freq,u16 v)
+void GetSinTab(u16 point,u16 maxnum,u16 freq)
 {
-    u16 i=0; 
-    float x,y;   //弧度
-    float jiao;//角度 分度角
-	u8 temp = 0;
-	u16 cycleTemp = 0;
-    jiao=360.000/point; 
-	cycleTemp= (STC_PWM_FREQ/freq)+(STC_PWM_FREQ%freq);
-	temp=cycleTemp/v*1.414;
-	maxnum=maxnum*temp+1;//1.414*107.14+1;
-	if(maxnum>cycleTemp)
-		maxnum=cycleTemp;
-	for(i=0;i<point;i++)
-	{
-		y=jiao*i;    //得到角度值
-		
-		x=y*0.01744; //角度转弧度  弧度=角度*（π/180）
-		
-		T_SinTable[i]=1500+(maxnum/2-6)*sin(x)+0.5;//+0.5 对得到的的数据进行四舍五入
+	u16 i=0; 
+	float x,y;   //??
+	float jiao;//?? ???
 	
- 	}
+	jiao=360.000/point; 
+	
+	if(freq==0x50)
+	 {
+		maxnum=maxnum*Value_50+1;//1.414*107.14+1;
+		if(maxnum>3000)
+			maxnum=3000;
+		for(i=0;i<point;i++)
+		{
+			y=jiao*i;    //?????
+			x=y*0.01744; //?????  ??=??*(p/180)
+
+			T_SinTable[i]=1500+(maxnum/2-6)*sin(x)+0.5;//+0.5 ?????????????
+		}
+	}
+	else if(freq==0x60)
+	{
+		maxnum=maxnum*Value_60+1;//89.28*1.414+1;
+		if(maxnum>2500)
+			maxnum=2500;
+		for(i=0;i<point;i++)
+		{
+			y=jiao*i;    //?????
+			x=y*0.01744; //?????  ??=??*(p/180)
+			T_SinTable[i]=1250+(maxnum/2-6)*sin(x)+0.5;//+0.5 ?????????????
+		}		
+	}
 }	
 
 u16 Get_voltage(void)
@@ -186,7 +202,7 @@ void STC_PWM_Task(u16 *v_current,u16 v_target,u16 freq)
 		{
 			(*v_current)++;
 		}
-		GetSinTab(200,*v_current,freq,stmPwm_InVol); //获取sin数据	
+		GetSinTab(200,*v_current,freq); //获取sin数据	
 		Drive_SD=0; //使能IR2110芯片
 	}
 }
@@ -199,12 +215,17 @@ void STC_PWM_SetVolage(u16 freq,u16 vol)
 	stmPwm_Tarv=vol;
 	stmPwm_Freq = freq;
 }
+void SendData(u8 dat);
 void STC_PWM_Timer(void)
 {
 	if(0 == stcPwmTime)
 	{
 		stcPwmTime = STC_PWM_VUPTIME;
-
+		/*SendData(0x55);
+		SendData(stcPwm_Curv);
+		SendData(stcPwm_Curv>>8);
+		SendData(stcPwm_Curv>>16);
+		SendData(stcPwm_Curv>>24);*/
 		STC_PWM_Task(&stcPwm_Curv,stmPwm_Tarv,stmPwm_Freq);
 	}
 	stcPwmTime--;
@@ -215,10 +236,12 @@ void pwm_isr() interrupt 22 using 1
     u16 j=0;
     if (PWMIF & CBIF)
     {
+		
         PWMIF &= ~CBIF; //清除标志
         PIN_SW2 |= 0x80;  //使能访问XSFR
-
+		
         j=T_SinTable[stcPwm_P];
+		SendData(j);
         PWM3T2=j;
         PWM6T2=j;
         j+=PWM_DeadZone;
@@ -226,8 +249,10 @@ void pwm_isr() interrupt 22 using 1
         PWM7T2=j;
 
         PIN_SW2 &= ~0x80;
-        if(++stcPwm_P>=200)
+        if(stcPwm_P++>200)
+		{
             stcPwm_P=0;
+		}
     }
 }
 void pwmError_isr() interrupt 23 using 1  //短路保护

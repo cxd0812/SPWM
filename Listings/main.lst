@@ -1,10 +1,10 @@
-C51 COMPILER V9.54   MAIN                                                                  05/01/2019 11:03:53 PAGE 1   
+C51 COMPILER V9.00   MAIN                                                                  05/04/2019 17:46:21 PAGE 1   
 
 
-C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+C51 COMPILER V9.00, COMPILATION OF MODULE MAIN
 OBJECT MODULE PLACED IN .\Objects\main.obj
-COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c LARGE OMF2 OPTIMIZE(8,SPEED) BROWSE DEBUG PRINT(.\Listings\main.l
-                    -st) TABS(2) OBJECT(.\Objects\main.obj)
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE main.c LARGE OMF2 BROWSE DEBUG PRINT(.\Listings\main.lst) OBJECT(.\Objects\
+                    -main.obj)
 
 line level    source
 
@@ -13,7 +13,7 @@ line level    source
    3          #include <stdio.h>
    4          #include <string.h>
    5          #include "STC_PWM.h"
-   6          //#include  "T_SineTable.h"
+   6          //#include      "T_SineTable.h"
    7          #include "AD.h" 
    8          
    9          
@@ -30,8 +30,8 @@ line level    source
   20          sbit Drive_SD=P0^4;   //1: 关闭    0:使能
   21          
   22          
-  23          #define UART_BUF_LEN  32
-  24          #define UART_BUF_MASK (UART_BUF_LEN - 1)
+  23          #define UART_BUF_LEN    32
+  24          #define UART_BUF_MASK   (UART_BUF_LEN - 1)
   25          u8 Uart3_Rec[UART_BUF_LEN]={0};
   26          u8 uartRcvLen = 0;
   27          u8 uartReadLen = 0;
@@ -50,39 +50,39 @@ line level    source
   40   1          for(x=xms;x>0;x--)
   41   1              for(y=550;y>0;y--);
   42   1      }
-  43          void Uart1Init(void)    //9600bps@30.000MHz
+  43          void Uart1Init(void)            //9600bps@30.000MHz
   44          {
-  45   1          SCON = 0x50;    //8位数据,可变波特率
-  46   1          AUXR |= 0x40;   //定时器1时钟为Fosc,即1T
-  47   1          AUXR &= 0xFE;   //串口1选择定时器1为波特率发生器
-  48   1          TMOD &= 0x0F;   //设定定时器1为16位自动重装方式
-  49   1          TL1 = 0xF3;   //设定定时初值
-  50   1          TH1 = 0xFC;   //设定定时初值
-  51   1          ET1 = 0;    //禁止定时器1中断
-  52   1          TR1 = 1;    //启动定时器1
+  45   1          SCON = 0x50;                //8位数据,可变波特率
+  46   1          AUXR |= 0x40;               //定时器1时钟为Fosc,即1T
+  47   1          AUXR &= 0xFE;               //串口1选择定时器1为波特率发生器
+  48   1          TMOD &= 0x0F;               //设定定时器1为16位自动重装方式
+  49   1          TL1 = 0xF3;         //设定定时初值
+  50   1          TH1 = 0xFC;         //设定定时初值
+  51   1          ET1 = 0;            //禁止定时器1中断
+  52   1          TR1 = 1;            //启动定时器1
   53   1      }
   54          
-C51 COMPILER V9.54   MAIN                                                                  05/01/2019 11:03:53 PAGE 2   
+C51 COMPILER V9.00   MAIN                                                                  05/04/2019 17:46:21 PAGE 2   
 
-  55          void Uart3Init(void)    //9600bps@30.000MHz
+  55          void Uart3Init(void)            //9600bps@30.000MHz
   56          {
-  57   1          S3CON = 0x10;   //8位数据,可变波特率
-  58   1          S3CON |= 0x40;    //串口3选择定时器3为波特率发生器
-  59   1          T4T3M |= 0x02;    //定时器3时钟为Fosc,即1T
-  60   1          T3L = 0xF3;   //设定定时初值
-  61   1          T3H = 0xFC;   //设定定时初值
-  62   1          T4T3M |= 0x08;    //启动定时器3
+  57   1          S3CON = 0x10;               //8位数据,可变波特率
+  58   1          S3CON |= 0x40;              //串口3选择定时器3为波特率发生器
+  59   1          T4T3M |= 0x02;              //定时器3时钟为Fosc,即1T
+  60   1          T3L = 0xF3;         //设定定时初值
+  61   1          T3H = 0xFC;         //设定定时初值
+  62   1          T4T3M |= 0x08;              //启动定时器3
   63   1          IE2 = 0x08;                 //使能串口3中断
   64   1          EA = 1;
   65   1      }
-  66          void Timer0Init(void)   //10毫秒@30.000MHz
+  66          void Timer0Init(void)           //10毫秒@30.000MHz
   67          {
-  68   1          AUXR &= 0x7F;   //定时器时钟12T模式
-  69   1          TMOD &= 0xF0;   //设置定时器模式
-  70   1          TL0 = 0x58;   //设置定时初值
-  71   1          TH0 = 0x9E;   //设置定时初值
-  72   1          TF0 = 0;    //清除TF0标志
-  73   1          TR0 = 1;    //定时器0开始计时
+  68   1          AUXR &= 0x7F;               //定时器时钟12T模式
+  69   1          TMOD &= 0xF0;               //设置定时器模式
+  70   1          TL0 = 0x58;         //设置定时初值
+  71   1          TH0 = 0x9E;         //设置定时初值
+  72   1          TF0 = 0;            //清除TF0标志
+  73   1          TR0 = 1;            //定时器0开始计时
   74   1          ET0=1;
   75   1      }
   76          
@@ -104,127 +104,129 @@ line level    source
   92   2              SendData(*s++);     //Send current char and increment string ptr
   93   2          }
   94   1      } 
-  95          void IO_init()
-  96          {
-  97   1          P3M0 = 0xff;
-  98   1          P3M1 = 0x00; // 配置 为输chu模式
-  99   1          P0M0 = 0xff;
- 100   1          P0M1 = 0x01; // 配置 为输chu模式  P00 P05 shuru  
- 101   1          P4M0 = 0xff;
- 102   1          P4M1 = 0x00; // 配置 为输chu模式
- 103   1          P1M0 = 0xff;
- 104   1          P1M1 = 0x03; // 配置 为输chu模式
- 105   1      
- 106   1          P2M0 = 0x00;
- 107   1          P2M1 = 0x00;
- 108   1      } 
- 109          
+  95          //void 
+  96          void IO_init()
+  97          {
+  98   1          P3M0 = 0xff;
+  99   1          P3M1 = 0x00; // 配置 为输chu模式
+ 100   1          P0M0 = 0xff;
+ 101   1          P0M1 = 0x01; // 配置 为输chu模式  P00 P05 shuru  
+ 102   1          P4M0 = 0xff;
+ 103   1          P4M1 = 0x00; // 配置 为输chu模式
+ 104   1          P1M0 = 0xff;
+ 105   1          P1M1 = 0x03; // 配置 为输chu模式
+ 106   1      
+ 107   1          P2M0 = 0x00;
+ 108   1          P2M1 = 0x00;
+ 109   1      }       
  110          
  111          
- 112          #define PROTECT_TIME   10
- 113          u16 ptotectTimer = 200;
- 114          void CurrentProtectTask(void)
- 115          {
- 116   1        if(!ptotectTimer)
-C51 COMPILER V9.54   MAIN                                                                  05/01/2019 11:03:53 PAGE 3   
+ 112          
+ 113          #define PROTECT_TIME   10
+ 114          u16 ptotectTimer = 200;
+ 115          void CurrentProtectTask(void)
+ 116          {
+C51 COMPILER V9.00   MAIN                                                                  05/04/2019 17:46:21 PAGE 3   
 
- 117   1        {
- 118   2          ptotectTimer = PROTECT_TIME;
- 119   2          if( GetADCResult(1)>710)
- 120   2          {
- 121   3                  Drive_SD=1; //关闭IR2110芯片
- 122   3          }
- 123   2        }
- 124   1      }
- 125          
+ 117   1              if(!ptotectTimer)
+ 118   1              {
+ 119   2                      ptotectTimer = PROTECT_TIME;
+ 120   2          if( GetADCResult(1)>710)
+ 121   2                      {
+ 122   3                  Drive_SD=1; //关闭IR2110芯片
+ 123   3                      }
+ 124   2              }
+ 125   1      }
  126          
- 127          u8 UartGetBuf(u8 *p)
- 128          {
- 129   1        u8 len = 0;
- 130   1        while(uartRcvLen != uartReadLen)
- 131   1        {
- 132   2          p[len] = Uart3_Rec[uartReadLen];
- 133   2          len++;
- 134   2          uartReadLen++;
- 135   2          delayms(20);
- 136   2        }
- 137   1        return len; 
- 138   1      }
- 139          void UartCmdProcess(void)
- 140          {
- 141   1        u8 buf[32];
- 142   1        u8 temp[50];
- 143   1        u16 freq;
- 144   1        u16 volage;
- 145   1        u8 len;
- 146   1        len = UartGetBuf(buf);
- 147   1        
- 148   1        if(len) //接收到一组数据
- 149   1        {
- 150   2          freq=buf[2]; //获取频率
- 151   2          volage=buf[7]<<8|buf[8]; //获取频率
- 152   2          volage=volage/10;
- 153   2          if(volage>28)
- 154   2            volage=28;
- 155   2          if(volage<1)
- 156   2            volage=1;
- 157   2                
- 158   2          sprintf((char*)temp,"plv:%bu hz\r\n",freq);
- 159   2          SendString(temp);
- 160   2          sprintf((char*)temp,"Vol:%d\r\n",volage);
- 161   2          SendString(temp);
- 162   2          STC_PWM_SetVolage(freq,volage);
- 163   2          Drive_SD=1; //关闭IR2110芯片
- 164   2        }
- 165   1      }
- 166          void main(void)         
- 167          {
- 168   1          IO_init();
- 169   1          Uart1Init();
- 170   1          Uart3Init();
- 171   1          Timer0Init();
- 172   1          InitADC();        //Init ADC  
- 173   1          SP485_ON=0;//使能485接收
- 174   1          Drive_SD=1; //关闭IR2110芯片
- 175   1          STC_PWM_Init(50);
- 176   1          STC_PWM_SetVolage(50,20);
- 177   1          while(1)            
- 178   1          { 
-C51 COMPILER V9.54   MAIN                                                                  05/01/2019 11:03:53 PAGE 4   
+ 127          
+ 128          u8 UartGetBuf(u8 *p)
+ 129          {
+ 130   1              u8 len = 0;
+ 131   1              while(uartRcvLen != uartReadLen)
+ 132   1              {
+ 133   2                      p[len] = Uart3_Rec[uartReadLen];
+ 134   2                      len++;
+ 135   2                      uartReadLen++;
+ 136   2                      delayms(20);
+ 137   2              }
+ 138   1              return len;     
+ 139   1      }
+ 140          void UartCmdProcess(void)
+ 141          {
+ 142   1              u8 buf[32];
+ 143   1        u8 temp[50];
+ 144   1              u16 freq;
+ 145   1              u16 volage;
+ 146   1              u8 len;
+ 147   1              len = UartGetBuf(buf);
+ 148   1              
+ 149   1              if(9 == len) //接收到一组数据
+ 150   1              {
+ 151   2                      freq=buf[2]; //获取频率
+ 152   2                      volage=buf[7]<<8|buf[8]; //获取频率
+ 153   2                      volage=volage/10;
+ 154   2                      if(volage>28)
+ 155   2                              volage=28;
+ 156   2                      if(volage<1)
+ 157   2                              volage=1;
+ 158   2                                              
+ 159   2                      sprintf((char*)temp,"plv:%bu hz\r\n",freq);
+ 160   2                      SendString(temp);
+ 161   2                      sprintf((char*)temp,"Vol:%d\r\n",volage);
+ 162   2                      SendString(temp);
+ 163   2                      STC_PWM_SetVolage(freq,volage);
+ 164   2                      Drive_SD=1; //关闭IR2110芯片
+ 165   2              }
+ 166   1      }
+ 167          void main(void)                                 
+ 168          {
+ 169   1          IO_init();
+ 170   1          Uart1Init();
+ 171   1          Uart3Init();
+ 172   1          Timer0Init();
+ 173   1          InitADC();        //Init ADC  
+ 174   1          SP485_ON=0;//使能485接收
+ 175   1          Drive_SD=1; //关闭IR2110芯片
+ 176   1          STC_PWM_Init(50);
+ 177   1                      STC_PWM_SetVolage(50,20);
+ 178   1          while(1)                                            
+C51 COMPILER V9.00   MAIN                                                                  05/04/2019 17:46:21 PAGE 4   
 
- 179   2            UartCmdProcess();
- 180   2          }   
- 181   1      }
- 182          //  d Timer0using using using using using using using 
- 183          void Timer0() interrupt 1 using 1  //10ms
- 184          {
- 185   1        P35=~P35;
- 186   1        CurrentProtectTask();
- 187   1        STC_PWM_Timer();
- 188   1      }
- 189          
- 190          /*----------------------------
- 191            UART3 中断服务程序
- 192            -----------------------------*/
- 193          void Uart3() interrupt 17 using 1
- 194          {
- 195   1          if (S3CON & S3RI)
- 196   1          {
- 197   2              S3CON &= ~S3RI;         //清除S3RI位
- 198   2              Uart3_Rec[uartRcvLen] = S3BUF;             //P0显示串口数据 
- 199   2          uartRcvLen ++;
- 200   2      
- 201   2          }
- 202   1          if (S3CON & S3TI)  //发送中断检测
- 203   1          {
- 204   2              S3CON &= ~S3TI;         //清除S3TI位
- 205   2          }   
- 206   1      
- 207   1      }
+ 179   1          { 
+ 180   2                              UartCmdProcess();
+ 181   2          }           
+ 182   1      }
+ 183          //  d Timer0using using using using using using using 
+ 184          void Timer0() interrupt 1 using 1  //10ms
+ 185          {
+ 186   1        P35=~P35;
+ 187   1              //SendString("d");
+ 188   1              CurrentProtectTask();
+ 189   1              STC_PWM_Timer();
+ 190   1      }
+ 191          
+ 192          /*----------------------------
+ 193            UART3 中断服务程序
+ 194            -----------------------------*/
+ 195          void Uart3() interrupt 17 using 1
+ 196          {
+ 197   1          if (S3CON & S3RI)
+ 198   1          {
+ 199   2              S3CON &= ~S3RI;         //清除S3RI位
+ 200   2              Uart3_Rec[uartRcvLen] = S3BUF;             //P0显示串口数据 
+ 201   2                                      uartRcvLen ++;
+ 202   2      
+ 203   2          }
+ 204   1          if (S3CON & S3TI)  //发送中断检测
+ 205   1          {
+ 206   2              S3CON &= ~S3TI;         //清除S3TI位
+ 207   2          }   
+ 208   1      
+ 209   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    646    ----
+   CODE SIZE        =    648    ----
    CONSTANT SIZE    =     22    ----
    XDATA SIZE       =     36      93
    PDATA SIZE       =   ----    ----

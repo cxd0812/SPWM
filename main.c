@@ -92,6 +92,7 @@ void SendString(char *s)
         SendData(*s++);     //Send current char and increment string ptr
     }
 } 
+//void 
 void IO_init()
 {
     P3M0 = 0xff;
@@ -145,7 +146,7 @@ void UartCmdProcess(void)
 	u8 len;
 	len = UartGetBuf(buf);
 	
-	if(len) //接收到一组数据
+	if(9 == len) //接收到一组数据
 	{
 		freq=buf[2]; //获取频率
 		volage=buf[7]<<8|buf[8]; //获取频率
@@ -183,6 +184,7 @@ void main(void)
 void Timer0() interrupt 1 using 1  //10ms
 {
   P35=~P35;
+	//SendString("d");
 	CurrentProtectTask();
 	STC_PWM_Timer();
 }
